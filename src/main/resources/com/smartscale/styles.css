@@ -1,0 +1,18 @@
+#anchorContainer {
+    -fx-background-color: #CCC8C8;
+}
+
+#anchorTop {
+    -fx-background-color: grey;
+}
+
+#lblTimeAndDate, #lblCurrentlyLoggedInText  {
+    -fx-text-fill: white;
+}
+
+#btnSignInFruits{
+    -fx-background-color: grey;
+    -fx-text-fill: blue;
+    -fx-underline: true ;
+    -fx-cursor: hand;
+}
