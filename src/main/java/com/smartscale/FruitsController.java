@@ -35,7 +35,7 @@ public class FruitsController implements Initializable {
 
     public void switchToSignIn(ActionEvent event) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sign-in.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().addAll(Objects.requireNonNull(this.getClass().getResource("styles.css")).toExternalForm());
