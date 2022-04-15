@@ -25,7 +25,7 @@
             </Label>
             <ImageView fitHeight="124.0" fitWidth="101.0" layoutX="82.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="82.0">
                <image>
-                  <Image url="@images/user.png" />
+                  <Image url="@../images/user.png" />
                </image>
             </ImageView>
             <Button layoutX="281.0" layoutY="20.0" mnemonicParsing="false" prefHeight="205.0" prefWidth="224.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="20.0" />
@@ -36,7 +36,7 @@
             </Label>
             <ImageView fitHeight="124.0" fitWidth="101.0" layoutX="287.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="82.0">
                <image>
-                  <Image url="@images/addproduct.png" />
+                  <Image url="@../images/addproduct.png" />
                </image>
             </ImageView>
          </children>

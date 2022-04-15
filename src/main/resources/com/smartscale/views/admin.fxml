@@ -25,7 +25,7 @@
             </Label>
             <ImageView fitHeight="124.0" fitWidth="101.0" layoutX="82.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="82.0">
                <image>
-                  <Image url="@images/user.png" />
+                  <Image url="@../images/user.png" />
                </image>
             </ImageView>
             <Button layoutX="281.0" layoutY="20.0" mnemonicParsing="false" prefHeight="205.0" prefWidth="224.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="20.0" />
@@ -36,7 +36,7 @@
             </Label>
             <ImageView fitHeight="124.0" fitWidth="101.0" layoutX="287.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="82.0">
                <image>
-                  <Image url="@images/addproduct.png" />
+                  <Image url="@../images/addproduct.png" />
                </image>
             </ImageView>
             <Button layoutX="20.0" layoutY="246.0" mnemonicParsing="false" prefHeight="205.0" prefWidth="224.0" AnchorPane.leftAnchor="20.0" />
@@ -47,7 +47,7 @@
             </Label>
             <ImageView fitHeight="124.0" fitWidth="101.0" layoutX="30.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="82.0">
                <image>
-                  <Image url="@images/settings.png" />
+                  <Image url="@../images/settings.png" />
                </image>
             </ImageView>
             <Button layoutX="277.0" layoutY="246.0" mnemonicParsing="false" prefHeight="205.0" prefWidth="224.0" AnchorPane.rightAnchor="20.0" />
@@ -58,7 +58,7 @@
             </Label>
             <ImageView fitHeight="124.0" fitWidth="101.0" layoutX="287.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="82.0">
                <image>
-                  <Image url="@images/employees.png" />
+                  <Image url="@../images/employees.png" />
                </image>
             </ImageView>
          </children>

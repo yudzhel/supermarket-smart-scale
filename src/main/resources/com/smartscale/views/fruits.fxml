@@ -9,7 +9,7 @@
       <AnchorPane fx:id="anchorTop" prefHeight="35.0" prefWidth="900.0">
          <children>
             <Label fx:id="lblTimeAndDate" layoutX="33.0" layoutY="5.0" prefHeight="25.0" prefWidth="190.0" text="Label" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="5.0" />
-            <Button fx:id="btnSignInFruits" alignment="CENTER_RIGHT" layoutX="832.0" layoutY="5.0" mnemonicParsing="false" onAction="#switchToSignIn" prefHeight="25.0" prefWidth="55.0" text="Sign In" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
+            <Button fx:id="btnSignInFruits" alignment="CENTER_RIGHT" layoutX="832.0" layoutY="5.0" mnemonicParsing="false" onAction="#buttonSignInOnAction" prefHeight="25.0" prefWidth="55.0" text="Sign In" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
          </children>
       </AnchorPane>
    </children>

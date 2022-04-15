@@ -1,24 +1,16 @@
 package com.smartscale;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.EventObject;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
@@ -33,20 +25,14 @@ public class LogInController implements Initializable {
     private PasswordField txtPassword;
 
     static String name;
-    Stage stage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Clock.initClock(lblTimeAndDate);
     }
 
-    public void cancelButtonOnAction(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fruits.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load());
-        scene.getStylesheets().addAll(Objects.requireNonNull(this.getClass().getResource("styles.css")).toExternalForm());
-        stage.setScene(scene);
-        stage.show();
+    public void cancelButtonOnAction() throws IOException {
+        Switch.switchTo("views/fruits.fxml", lblTimeAndDate);
     }
 
     public void loginButtonOnAction() {
@@ -74,7 +60,7 @@ public class LogInController implements Initializable {
                 if ((queryResult.getString("role").equals("administrator"))) {
                     switchToAdmin();
                 } else {
-                    switchToEmployee(stage);
+                    switchToEmployee();
                 }
             } else {
                 lblInvalidLoginMessage.setText("Invalid username or password. Please try again!");
@@ -87,21 +73,13 @@ public class LogInController implements Initializable {
         }
     }
 
-    private void switchToEmployee(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("employee.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        scene.getStylesheets().addAll(Objects.requireNonNull(this.getClass().getResource("styles.css")).toExternalForm());
-        stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
+    public void switchToEmployee() throws IOException {
+
+        Switch.switchTo("views/employee.fxml", lblTimeAndDate);
     }
 
     public void switchToAdmin() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("admin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        scene.getStylesheets().addAll(Objects.requireNonNull(this.getClass().getResource("styles.css")).toExternalForm());
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
+
+        Switch.switchTo("views/admin.fxml", lblTimeAndDate);
     }
 }
