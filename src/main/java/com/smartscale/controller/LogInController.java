@@ -1,5 +1,8 @@
-package com.smartscale;
+package com.smartscale.controller;
 
+import com.smartscale.util.Clock;
+import com.smartscale.DatabaseConnection;
+import com.smartscale.Switch;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -15,6 +18,7 @@ import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
 
+    public static String name, id;
     @FXML
     private Label lblTimeAndDate;
     @FXML
@@ -23,8 +27,6 @@ public class LogInController implements Initializable {
     private TextField txtUsername;
     @FXML
     private PasswordField txtPassword;
-
-    static String name;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -48,7 +50,7 @@ public class LogInController implements Initializable {
         DatabaseConnection connection = new DatabaseConnection();
         Connection connectDB = connection.getConnection();
 
-        String verifyLogin = "SELECT role, firstname FROM users WHERE username = '" + txtUsername.getText() + "' AND password = '" + txtPassword.getText() + "'";
+        String verifyLogin = "SELECT accountID, role, firstname FROM users WHERE username = '" + txtUsername.getText() + "' AND password = '" + txtPassword.getText() + "'";
 
         try {
             Statement statement = connectDB.createStatement();
@@ -56,6 +58,7 @@ public class LogInController implements Initializable {
 
             if (queryResult.next()) {
                 name = queryResult.getString("firstname");
+                id = queryResult.getString("accountID");
 
                 if ((queryResult.getString("role").equals("administrator"))) {
                     switchToAdmin();

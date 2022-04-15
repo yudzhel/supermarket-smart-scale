@@ -1,5 +1,7 @@
-package com.smartscale;
+package com.smartscale.controller;
 
+import com.smartscale.util.Clock;
+import com.smartscale.Switch;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -24,5 +26,9 @@ public class AdminController implements Initializable {
 
     public void logoutButtonOnAction() throws IOException {
         Switch.switchTo("views/login.fxml", lblTimeAndDate);
+    }
+
+    public void myAccountButtonOnAction() throws IOException {
+        Switch.switchTo("views/myaccount.fxml", lblTimeAndDate);
     }
 }

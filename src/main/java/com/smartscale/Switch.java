@@ -12,7 +12,7 @@ public class Switch {
 
     // Switches to the given view, label is used to access the current stage
 
-    static void switchTo(String fxmlFileName, Label label) throws IOException {
+    public static void switchTo(String fxmlFileName, Label label) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Switch.class.getResource(fxmlFileName));
         Stage stage = (Stage) label.getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());

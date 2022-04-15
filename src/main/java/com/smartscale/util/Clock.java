@@ -1,4 +1,4 @@
-package com.smartscale;
+package com.smartscale.util;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Clock {
 
-    static void initClock(Label label) {
+    public static void initClock(Label label) {
 
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a  dd/MM/yyyy");

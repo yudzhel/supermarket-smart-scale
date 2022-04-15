@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartscale.AdminController">
+<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartscale.controller.AdminController">
    <children>
       <AnchorPane fx:id="anchorTop" prefHeight="35.0" prefWidth="900.0">
          <children>
@@ -17,17 +17,19 @@
       </AnchorPane>
       <AnchorPane layoutX="202.0" layoutY="75.0" prefHeight="471.0" prefWidth="524.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="174.0">
          <children>
-            <Button layoutX="72.0" layoutY="20.0" mnemonicParsing="false" prefHeight="205.0" prefWidth="224.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
+            <Button fx:id="btnMyAccount" layoutX="72.0" layoutY="20.0" mnemonicParsing="false" onAction="#myAccountButtonOnAction" prefHeight="205.0" prefWidth="224.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <graphic>
+                  <ImageView fitHeight="124.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/user.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <Label alignment="CENTER" layoutX="57.0" layoutY="186.0" prefHeight="30.0" prefWidth="152.0" text="MY ACCOUNT" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="315.0">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <ImageView fitHeight="124.0" fitWidth="101.0" layoutX="82.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="82.0">
-               <image>
-                  <Image url="@../images/user.png" />
-               </image>
-            </ImageView>
             <Button layoutX="281.0" layoutY="20.0" mnemonicParsing="false" prefHeight="205.0" prefWidth="224.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="20.0" />
             <Label alignment="CENTER" layoutX="262.0" layoutY="186.0" prefHeight="30.0" prefWidth="152.0" text="ADD PRODUCT" AnchorPane.leftAnchor="315.0" AnchorPane.rightAnchor="57.0">
                <font>
