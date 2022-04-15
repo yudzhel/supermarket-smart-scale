@@ -2,7 +2,7 @@ package com.smartscale.controller;
 
 import com.smartscale.util.Clock;
 import com.smartscale.DatabaseConnection;
-import com.smartscale.Switch;
+import com.smartscale.util.Switch;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 
 public class MyAccountController implements Initializable {
 
+    private String role;
     @FXML
     private Label lblTimeAndDate;
     @FXML
@@ -32,7 +33,14 @@ public class MyAccountController implements Initializable {
     }
 
     public void backButtonOnAction() throws IOException {
-        Switch.switchTo("views/admin.fxml", lblTimeAndDate);
+
+        if(role.equals("administrator")){
+            Switch.switchTo("views/admin.fxml", lblTimeAndDate);
+        }
+        else {
+            Switch.switchTo("views/employee.fxml", lblTimeAndDate);
+        }
+
     }
 
     public void getDataFromTablesAndAddToTextFields(){
@@ -56,6 +64,7 @@ public class MyAccountController implements Initializable {
                 String password = queryResult.getString("password");
 
                 addValuesToTextFields(accountID, firstName, lastName, userType, email, phone, username, password);
+                role = userType;
 
             }
 

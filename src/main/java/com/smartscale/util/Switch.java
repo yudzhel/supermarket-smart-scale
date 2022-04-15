@@ -1,5 +1,6 @@
-package com.smartscale;
+package com.smartscale.util;
 
+import com.smartscale.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -13,10 +14,10 @@ public class Switch {
     // Switches to the given view, label is used to access the current stage
 
     public static void switchTo(String fxmlFileName, Label label) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Switch.class.getResource(fxmlFileName));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlFileName));
         Stage stage = (Stage) label.getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
-        scene.getStylesheets().addAll(Objects.requireNonNull(Switch.class.getResource("styles.css")).toExternalForm());
+        scene.getStylesheets().addAll(Objects.requireNonNull(Main.class.getResource("styles.css")).toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
