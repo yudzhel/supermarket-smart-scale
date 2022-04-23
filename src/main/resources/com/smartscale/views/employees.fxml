@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartscale.controller.EmployeesController">
+   <children>
+      <AnchorPane fx:id="anchorTop" prefHeight="35.0" prefWidth="900.0">
+         <children>
+            <Label fx:id="lblTimeAndDate" layoutX="43.0" layoutY="9.0" prefHeight="25.0" prefWidth="190.0" text="Label" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="5.0" />
+            <Label fx:id="lblCurrentlyLoggedInText" alignment="CENTER_RIGHT" layoutX="693.0" layoutY="9.0" prefHeight="25.0" prefWidth="190.0" text="Label" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="5.0" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tableEmployees" layoutX="372.0" layoutY="97.0" prefHeight="453.0" prefWidth="513.0">
+        <columns>
+          <TableColumn fx:id="colID" prefWidth="39.0" text="ID" />
+          <TableColumn fx:id="colFirstName" prefWidth="77.66665649414062" text="First Name" />
+            <TableColumn fx:id="colLastName" prefWidth="75.33331298828125" text="Last Name" />
+            <TableColumn fx:id="colUserType" prefWidth="68.66668701171875" text="User Type" />
+            <TableColumn fx:id="colEmail" prefWidth="69.0" text="Email" />
+            <TableColumn fx:id="colPhone" prefWidth="55.0" text="Phone" />
+            <TableColumn fx:id="colUsername" prefWidth="71.0" text="Username" />
+            <TableColumn fx:id="colPassword" prefWidth="75.0" text="Password" />
+        </columns>
+      </TableView>
+      <Label layoutX="394.0" layoutY="39.0" text="EMPLOYEES">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <FlowPane layoutX="25.0" layoutY="97.0" prefHeight="454.0" prefWidth="326.0" style="-fx-background-color: grey;">
+         <children>
+            <Label prefHeight="17.0" prefWidth="120.0" text="First Name">
+               <FlowPane.margin>
+                  <Insets right="10.0" />
+               </FlowPane.margin>
+            </Label>
+            <TextField fx:id="txtFirstName" prefHeight="25.0" prefWidth="180.0">
+               <FlowPane.margin>
+                  <Insets top="20.0" />
+               </FlowPane.margin>
+            </TextField>
+            <Label prefHeight="17.0" prefWidth="120.0" text="Last Name">
+               <FlowPane.margin>
+                  <Insets right="10.0" />
+               </FlowPane.margin>
+            </Label>
+            <TextField fx:id="txtLastName" prefHeight="25.0" prefWidth="180.0">
+               <FlowPane.margin>
+                  <Insets top="20.0" />
+               </FlowPane.margin>
+            </TextField>
+            <Label prefHeight="17.0" prefWidth="120.0" text="User Type">
+               <FlowPane.margin>
+                  <Insets right="10.0" />
+               </FlowPane.margin>
+            </Label>
+            <ComboBox fx:id="comboUserType" prefHeight="25.0" prefWidth="180.0">
+               <FlowPane.margin>
+                  <Insets top="20.0" />
+               </FlowPane.margin>
+            </ComboBox>
+            <Label prefHeight="17.0" prefWidth="120.0" text="Email">
+               <FlowPane.margin>
+                  <Insets right="10.0" />
+               </FlowPane.margin>
+            </Label>
+            <TextField fx:id="txtEmail" prefHeight="25.0" prefWidth="180.0">
+               <FlowPane.margin>
+                  <Insets top="20.0" />
+               </FlowPane.margin>
+            </TextField>
+            <Label prefHeight="17.0" prefWidth="120.0" text="Phone">
+               <FlowPane.margin>
+                  <Insets right="10.0" />
+               </FlowPane.margin>
+            </Label>
+            <TextField fx:id="txtPhone" prefHeight="25.0" prefWidth="180.0">
+               <FlowPane.margin>
+                  <Insets top="20.0" />
+               </FlowPane.margin>
+            </TextField>
+            <Label prefHeight="17.0" prefWidth="120.0" text="Username">
+               <FlowPane.margin>
+                  <Insets right="10.0" />
+               </FlowPane.margin>
+            </Label>
+            <TextField fx:id="txtUsername" prefHeight="25.0" prefWidth="180.0">
+               <FlowPane.margin>
+                  <Insets top="20.0" />
+               </FlowPane.margin>
+            </TextField>
+            <Label prefHeight="17.0" prefWidth="120.0" text="Password">
+               <FlowPane.margin>
+                  <Insets right="10.0" />
+               </FlowPane.margin>
+            </Label>
+            <TextField fx:id="txtPassword" prefHeight="25.0" prefWidth="180.0">
+               <FlowPane.margin>
+                  <Insets top="20.0" />
+               </FlowPane.margin>
+            </TextField>
+         </children>
+      </FlowPane>
+      <Button fx:id="btnAdd" layoutX="23.0" layoutY="579.0" mnemonicParsing="false" onAction="#addUser" prefHeight="40.0" prefWidth="117.0" text="Add" />
+      <Button fx:id="btnDelete" layoutX="148.0" layoutY="579.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Delete" />
+      <Button fx:id="btnBack" layoutX="765.0" layoutY="579.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="40.0" prefWidth="121.0" text="BACK" />
+      <Button fx:id="btnUpdate" layoutX="276.0" layoutY="579.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="121.0" text="Update" />
+      <Button fx:id="btnClear" layoutX="406.0" layoutY="579.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="121.0" text="Clear" />
+   </children>
+</AnchorPane>

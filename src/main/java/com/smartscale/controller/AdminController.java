@@ -21,7 +21,7 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Clock.initClock(lblTimeAndDate);
-        lblCurrentlyLoggedInText.setText("Currently logged in: " + LogInController.name);
+        lblCurrentlyLoggedInText.setText("Currently logged in: " + LogInController.getName());
     }
 
     public void logoutButtonOnAction() throws IOException {
@@ -30,5 +30,9 @@ public class AdminController implements Initializable {
 
     public void myAccountButtonOnAction() throws IOException {
         Switch.switchTo("views/myaccount.fxml", lblTimeAndDate);
+    }
+
+    public void employeesButtonOnAction() throws IOException {
+        Switch.switchTo("views/employees.fxml", lblTimeAndDate);
     }
 }

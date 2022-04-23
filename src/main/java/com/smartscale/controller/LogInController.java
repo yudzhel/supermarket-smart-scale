@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
 
-    public static String name, id;
+    private static String name, id;
     @FXML
     private Label lblTimeAndDate;
     @FXML
@@ -84,5 +84,13 @@ public class LogInController implements Initializable {
     public void switchToAdmin() throws IOException {
 
         Switch.switchTo("views/admin.fxml", lblTimeAndDate);
+    }
+
+    public static String getName(){
+        return name;
+    }
+
+    public static String getID(){
+        return id;
     }
 }

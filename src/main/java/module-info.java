@@ -11,4 +11,6 @@ module com.smart.scale.supermarketsmartscale {
     opens com.smartscale.controller to javafx.fxml;
     exports com.smartscale.util;
     opens com.smartscale.util to javafx.fxml;
+    exports com.smartscale.model;
+    opens com.smartscale.model to javafx.fxml;
 }

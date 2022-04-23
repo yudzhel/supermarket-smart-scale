@@ -52,17 +52,19 @@
                   <Image url="@../images/settings.png" />
                </image>
             </ImageView>
-            <Button layoutX="277.0" layoutY="246.0" mnemonicParsing="false" prefHeight="205.0" prefWidth="224.0" AnchorPane.rightAnchor="20.0" />
+            <Button fx:id="btnEmployees" layoutX="277.0" layoutY="246.0" mnemonicParsing="false" onAction="#employeesButtonOnAction" prefHeight="205.0" prefWidth="224.0" AnchorPane.rightAnchor="20.0">
+               <graphic>
+                  <ImageView fitHeight="124.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/employees.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <Label alignment="CENTER" layoutX="262.0" layoutY="412.0" prefHeight="30.0" prefWidth="152.0" text="EMPLOYEES" AnchorPane.rightAnchor="57.0">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <ImageView fitHeight="124.0" fitWidth="101.0" layoutX="287.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="82.0">
-               <image>
-                  <Image url="@../images/employees.png" />
-               </image>
-            </ImageView>
          </children>
       </AnchorPane>
       <Button fx:id="btnLogOut" layoutX="733.0" layoutY="570.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="56.0" prefWidth="152.0" style="-fx-background-color: RED;" text="LOG OUT" textFill="WHITE">

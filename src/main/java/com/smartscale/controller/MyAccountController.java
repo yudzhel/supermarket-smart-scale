@@ -28,7 +28,7 @@ public class MyAccountController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
             Clock.initClock(lblTimeAndDate);
-            lblCurrentlyLoggedInText.setText("Currently logged in: " + LogInController.name);
+            lblCurrentlyLoggedInText.setText("Currently logged in: " + LogInController.getName());
             getDataFromTablesAndAddToTextFields();
     }
 
@@ -47,7 +47,7 @@ public class MyAccountController implements Initializable {
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getConnection();
 
-        String query = "SELECT * FROM users WHERE accountID = " + Integer.valueOf(LogInController.id);
+        String query = "SELECT * FROM users WHERE accountID = " + Integer.valueOf(LogInController.getID());
 
         try {
             Statement statement = connection.createStatement();
