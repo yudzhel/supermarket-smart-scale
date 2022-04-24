@@ -2,9 +2,12 @@ package com.smartscale.controller;
 
 import com.smartscale.DatabaseConnection;
 import com.smartscale.model.Employee;
+import com.smartscale.model.Product;
 import com.smartscale.util.Clock;
 import com.smartscale.util.Switch;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -12,9 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class EmployeesController implements Initializable {
@@ -74,18 +75,23 @@ public class EmployeesController implements Initializable {
     @FXML
     private TextField txtUsername;
 
+    @FXML
+    private TextField txtID;
+
+    @FXML
+    private TextField txtSearchBar;
+
     ObservableList<Employee> employees;
 
-    int index = -1;
-    Connection conn = null;
-    ResultSet rs = null;
     PreparedStatement ps = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Clock.initClock(lblTimeAndDate);
         lblCurrentlyLoggedInText.setText("Currently logged in: " + LogInController.getName());
+        populateComboBox();
         populateTable();
+        searchBar();
     }
 
     public void backButtonOnAction() throws IOException {
@@ -93,12 +99,6 @@ public class EmployeesController implements Initializable {
     }
 
     public void populateTable(){
-
-        comboUserType.getItems().addAll(
-                "administrator", "employee");
-
-        comboUserType.setPromptText("Please select one");
-
 
         colID.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("id"));
         colFirstName.setCellValueFactory(new PropertyValueFactory<Employee, String>("firstName"));
@@ -132,10 +132,113 @@ public class EmployeesController implements Initializable {
             ps.execute();
 
             populateTable();
+            clearTextFields();
 
 
         } catch (Exception e){
-
+                e.printStackTrace();
         }
+    }
+
+    public void updateUser() throws SQLException {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+        Statement statement = connection.createStatement();
+
+        String query = "UPDATE users SET firstname = '" + txtFirstName.getText() +
+                "', lastname = '" + txtLastName.getText() +
+                "', username = '" + txtUsername.getText() +
+                "', password = '" + txtPassword.getText() +
+                "', role = '" + comboUserType.getSelectionModel().getSelectedItem() +
+                "', email = '" + txtEmail.getText() +
+                "', phone = '" + txtPhone.getText() + "' WHERE accountID = " + txtID.getText();
+
+        try{
+
+            statement.execute(query);
+            populateTable();
+            clearTextFields();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteUser() throws SQLException {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+        Statement statement = connection.createStatement();
+
+        String query = "DELETE FROM users WHERE accountID = " + txtID.getText();
+
+        try{
+
+            statement.execute(query);
+            populateTable();
+            clearTextFields();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void clearTextFields(){
+
+        txtID.setText("");
+        txtFirstName.setText("");
+        txtLastName.setText("");
+        txtUsername.setText("");
+        txtPassword.setText("");
+        txtEmail.setText("");
+        txtPhone.setText("");
+        comboUserType.getSelectionModel().clearSelection();
+
+    }
+
+    public void tableToTextFields(){
+        Employee employee = tableEmployees.getSelectionModel().getSelectedItem();
+
+        txtID.setText(String.valueOf(employee.getId()));
+        txtFirstName.setText(employee.getFirstName());
+        txtLastName.setText(employee.getLastName());
+        txtEmail.setText(employee.getEmail());
+        txtPhone.setText(employee.getPhone());
+        comboUserType.getSelectionModel().select(employee.getUserType());
+        txtUsername.setText(employee.getUsername());
+        txtPassword.setText(employee.getPassword());
+    }
+
+    public void populateComboBox(){
+        comboUserType.getItems().addAll(
+                "administrator", "employee");
+
+        comboUserType.setPromptText("Please select one");
+    }
+
+    public void searchBar(){
+        FilteredList<Employee> filteredList = new FilteredList<>(employees, b -> true);
+        txtSearchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(employee -> {
+
+                if(newValue.isEmpty() || newValue.isBlank() || newValue == null){
+                    return  true;
+                }
+
+                String searchKeyword = newValue.toLowerCase();
+
+                if(employee.getFirstName().toLowerCase().contains(searchKeyword)){
+                    return true; // match found
+                } else if (employee.getLastName().toLowerCase().contains(searchKeyword)){
+                    return true;
+                } else if (employee.getEmail().toLowerCase().contains(searchKeyword)){
+                    return true;
+                }
+                else return false;
+            });
+        });
+
+        SortedList<Employee> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(tableEmployees.comparatorProperty());
+        tableEmployees.setItems(sortedList);
     }
 }

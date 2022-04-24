@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class MyAccountController implements Initializable {
 
-    private String role;
+    public static String role;
     @FXML
     private Label lblTimeAndDate;
     @FXML

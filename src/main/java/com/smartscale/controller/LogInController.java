@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
 
-    private static String name, id;
+    private static String name, id, role;
     @FXML
     private Label lblTimeAndDate;
     @FXML
@@ -59,6 +59,7 @@ public class LogInController implements Initializable {
             if (queryResult.next()) {
                 name = queryResult.getString("firstname");
                 id = queryResult.getString("accountID");
+                role = queryResult.getString("role");
 
                 if ((queryResult.getString("role").equals("administrator"))) {
                     switchToAdmin();
@@ -92,5 +93,9 @@ public class LogInController implements Initializable {
 
     public static String getID(){
         return id;
+    }
+
+    public static String getRole(){
+        return role;
     }
 }
