@@ -2,6 +2,7 @@ package com.smartscale.controller;
 
 import com.smartscale.util.Clock;
 import com.smartscale.util.Switch;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -10,7 +11,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EmployeeController implements Initializable {
+public class LogbookController implements Initializable {
+
     @FXML
     private Label lblTimeAndDate;
     @FXML
@@ -22,16 +24,7 @@ public class EmployeeController implements Initializable {
         lblCurrentlyLoggedInText.setText("Currently logged in: " + LogInController.getName());
     }
 
-    public void logoutButtonOnAction() throws IOException {
-        Switch.switchTo("views/login.fxml", lblTimeAndDate);
+    public void backButtonOnAction() throws IOException {
+        Switch.switchTo("views/admin.fxml", lblTimeAndDate);
     }
-
-    public void myAccountButtonOnAction() throws IOException {
-        Switch.switchTo("views/myaccount.fxml", lblTimeAndDate);
-    }
-
-    public void productsButtonOnAction() throws IOException {
-        Switch.switchTo("views/products.fxml", lblTimeAndDate);
-    }
-
 }

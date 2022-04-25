@@ -43,17 +43,19 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="20.0" layoutY="246.0" mnemonicParsing="false" prefHeight="205.0" prefWidth="224.0" AnchorPane.leftAnchor="20.0" />
-            <Label alignment="CENTER" layoutX="5.0" layoutY="412.0" prefHeight="30.0" prefWidth="152.0" text="SETTINGS" AnchorPane.leftAnchor="57.0">
+            <Button layoutX="20.0" layoutY="246.0" mnemonicParsing="false" onAction="#logbookButtonOnAction" prefHeight="205.0" prefWidth="224.0" AnchorPane.leftAnchor="20.0">
+               <graphic>
+                  <ImageView fitHeight="124.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/logbook.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Label alignment="CENTER" layoutX="5.0" layoutY="412.0" prefHeight="30.0" prefWidth="152.0" text="LOGBOOK" AnchorPane.leftAnchor="57.0">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <ImageView fitHeight="124.0" fitWidth="101.0" layoutX="30.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="82.0">
-               <image>
-                  <Image url="@../images/settings.png" />
-               </image>
-            </ImageView>
             <Button fx:id="btnEmployees" layoutX="277.0" layoutY="246.0" mnemonicParsing="false" onAction="#employeesButtonOnAction" prefHeight="205.0" prefWidth="224.0" AnchorPane.rightAnchor="20.0">
                <graphic>
                   <ImageView fitHeight="124.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">

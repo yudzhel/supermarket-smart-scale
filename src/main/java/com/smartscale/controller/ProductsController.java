@@ -1,9 +1,9 @@
 package com.smartscale.controller;
 
 import com.smartscale.DatabaseConnection;
-import com.smartscale.model.Employee;
 import com.smartscale.model.Product;
 import com.smartscale.util.Clock;
+import com.smartscale.util.MessageDialog;
 import com.smartscale.util.Switch;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -15,11 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Locale;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class ProductsController implements Initializable {
@@ -98,21 +94,29 @@ public class ProductsController implements Initializable {
         String query = "INSERT INTO products (product_name, product_category, product_price, image_URL) " +
                 "VALUES (?,?,?,?)";
 
-        try{
-            ps = connection.prepareStatement(query);
-            ps.setString(1, txtProductName.getText());
-            ps.setString(2, comboCategory.getValue());
-            ps.setString(3, txtPrice.getText());
-            ps.setString(4, txtImageURL.getText());
-            ps.execute();
+        if(areRequiredFieldsAreFilled()){
+            try{
 
-            populateTable();
-            clearTextFields();
-            searchBar();
+                String productName = txtProductName.getText();
 
+                ps = connection.prepareStatement(query);
+                ps.setString(1, txtProductName.getText());
+                ps.setString(2, comboCategory.getValue());
+                ps.setString(3, txtPrice.getText());
+                ps.setString(4, txtImageURL.getText());
+                ps.execute();
 
-        } catch (Exception e){
-            e.printStackTrace();
+                populateTable();
+                clearTextFields();
+                searchBar();
+                MessageDialog.displayInformation("Product " + productName + " was added successfully!");
+            }
+            catch (Exception e){
+                MessageDialog.displayError(e.getMessage());
+            }
+        }
+        else {
+            MessageDialog.displayError("Please fill all necessary fields (Product Name, Category and Price!)");
         }
     }
 
@@ -127,16 +131,24 @@ public class ProductsController implements Initializable {
                 ", image_URL = '" + txtImageURL.getText() +
                  "' WHERE product_ID = " + txtProductID.getText();
 
-        try{
+        if(!txtProductID.getText().isEmpty()){
+            try{
 
-            statement.execute(query);
-            populateTable();
-            clearTextFields();
-            searchBar();
+                String id = txtProductID.getText();
+                statement.execute(query);
+                populateTable();
+                clearTextFields();
+                searchBar();
+                MessageDialog.displayInformation("Update was successful! " + "(Product ID: " + id + ")");
 
-        } catch (Exception e){
-            e.printStackTrace();
+            } catch (Exception e){
+                MessageDialog.displayError(e.getMessage());
+            }
         }
+        else {
+            MessageDialog.displayError("Please choose a product to update!");
+        }
+
     }
 
     public void deleteProduct() throws SQLException {
@@ -146,16 +158,24 @@ public class ProductsController implements Initializable {
 
         String query = "DELETE FROM products WHERE product_ID = " + txtProductID.getText();
 
-        try{
+        if(!txtProductID.getText().isEmpty()){
+            try{
 
-            statement.execute(query);
-            populateTable();
-            clearTextFields();
-            searchBar();
+                String id = txtProductID.getText();
+                statement.execute(query);
+                populateTable();
+                clearTextFields();
+                searchBar();
+                MessageDialog.displayInformation("Product (" + id + ") was deleted!");
 
-        } catch (Exception e){
-            e.printStackTrace();
+            } catch (Exception e){
+                MessageDialog.displayError(e.getMessage());
+            }
         }
+        else {
+            MessageDialog.displayError("Please choose a product to delete!");
+        }
+
     }
 
     public void populateTable(){
@@ -184,11 +204,16 @@ public class ProductsController implements Initializable {
     public void tableToTextFields(){
         Product product = tableProducts.getSelectionModel().getSelectedItem();
 
-        txtProductID.setText(String.valueOf(product.getProductID()));
-        txtProductName.setText(product.getProductName());
-        txtPrice.setText(String.valueOf(product.getProductPrice()));
-        txtImageURL.setText(product.getImageURL());
-        comboCategory.getSelectionModel().select(product.getProductCategory());
+        try {
+            txtProductID.setText(String.valueOf(product.getProductID()));
+            txtProductName.setText(product.getProductName());
+            txtPrice.setText(String.valueOf(product.getProductPrice()));
+            txtImageURL.setText(product.getImageURL());
+            comboCategory.getSelectionModel().select(product.getProductCategory());
+        } catch (Exception ignored){
+
+        }
+
     }
 
     public void populateComboBox(){
@@ -219,5 +244,11 @@ public class ProductsController implements Initializable {
         SortedList<Product> sortedProducts = new SortedList<>(filteredProducts);
         sortedProducts.comparatorProperty().bind(tableProducts.comparatorProperty());
         tableProducts.setItems(sortedProducts);
+    }
+
+    private boolean areRequiredFieldsAreFilled() {
+        return !txtProductName.getText().isEmpty() &&
+                !txtPrice.getText().isEmpty() &&
+                comboCategory.getValue() != null;
     }
 }

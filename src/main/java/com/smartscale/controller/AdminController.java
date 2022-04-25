@@ -39,4 +39,8 @@ public class AdminController implements Initializable {
     public void productsButtonOnAction() throws IOException {
         Switch.switchTo("views/products.fxml", lblTimeAndDate);
     }
+
+    public void logbookButtonOnAction() throws IOException {
+        Switch.switchTo("views/logbook.fxml", lblTimeAndDate);
+    }
 }

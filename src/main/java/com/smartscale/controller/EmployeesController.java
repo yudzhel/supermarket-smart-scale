@@ -2,8 +2,8 @@ package com.smartscale.controller;
 
 import com.smartscale.DatabaseConnection;
 import com.smartscale.model.Employee;
-import com.smartscale.model.Product;
 import com.smartscale.util.Clock;
+import com.smartscale.util.MessageDialog;
 import com.smartscale.util.Switch;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -120,24 +120,35 @@ public class EmployeesController implements Initializable {
         String query = "INSERT INTO users (firstname, lastname, username, password, role, email, phone) " +
                 "VALUES (?,?,?,?,?,?,?)";
 
-        try{
-            ps = connection.prepareStatement(query);
-            ps.setString(1, txtFirstName.getText());
-            ps.setString(2, txtLastName.getText());
-            ps.setString(3, txtUsername.getText());
-            ps.setString(4, txtPassword.getText());
-            ps.setString(5, (String) comboUserType.getValue());
-            ps.setString(6, txtEmail.getText());
-            ps.setString(7, txtPhone.getText());
-            ps.execute();
+        if(areRequiredFieldsAreFilled()){
+            try{
 
-            populateTable();
-            clearTextFields();
+                String username = txtUsername.getText();
 
+                ps = connection.prepareStatement(query);
+                ps.setString(1, txtFirstName.getText());
+                ps.setString(2, txtLastName.getText());
+                ps.setString(3, txtUsername.getText());
+                ps.setString(4, txtPassword.getText());
+                ps.setString(5, comboUserType.getValue());
+                ps.setString(6, txtEmail.getText());
+                ps.setString(7, txtPhone.getText());
+                ps.execute();
 
-        } catch (Exception e){
-                e.printStackTrace();
+                populateTable();
+                clearTextFields();
+                searchBar();
+                MessageDialog.displayInformation("User " + username + " was added successfully!");
+
+            } catch (Exception e){
+                MessageDialog.displayError(e.getMessage());
+            }
         }
+        else {
+            MessageDialog.displayError("Please fill all necessary fields (First Name, Last Name," +
+                    "Username, Password, User Type and Phone)!");
+        }
+
     }
 
     public void updateUser() throws SQLException {
@@ -153,15 +164,23 @@ public class EmployeesController implements Initializable {
                 "', email = '" + txtEmail.getText() +
                 "', phone = '" + txtPhone.getText() + "' WHERE accountID = " + txtID.getText();
 
-        try{
+        if(!txtID.getText().isEmpty()){
+            try{
 
-            statement.execute(query);
-            populateTable();
-            clearTextFields();
+                String username = txtUsername.getText();
+                statement.execute(query);
+                populateTable();
+                clearTextFields();
+                searchBar();
+                MessageDialog.displayInformation("Update was successful! " + "(Username: " + username + ")");
 
-        } catch (Exception e){
-            e.printStackTrace();
+            } catch (Exception e){
+                MessageDialog.displayError(e.getMessage());
+            }
+        } else {
+            MessageDialog.displayError("Please choose a user to update!");
         }
+
     }
 
     public void deleteUser() throws SQLException {
@@ -171,15 +190,23 @@ public class EmployeesController implements Initializable {
 
         String query = "DELETE FROM users WHERE accountID = " + txtID.getText();
 
-        try{
+        if(!txtID.getText().isEmpty()){
+            try{
 
-            statement.execute(query);
-            populateTable();
-            clearTextFields();
+                String username = txtUsername.getText();
+                statement.execute(query);
+                populateTable();
+                clearTextFields();
+                searchBar();
+                MessageDialog.displayInformation("User (" + username + ") was deleted!");
 
-        } catch (Exception e){
-            e.printStackTrace();
+            } catch (Exception e){
+                MessageDialog.displayError(e.getMessage());
+            }
+        } else {
+            MessageDialog.displayError("Please choose a product to delete!");
         }
+
     }
 
     public void clearTextFields(){
@@ -198,14 +225,19 @@ public class EmployeesController implements Initializable {
     public void tableToTextFields(){
         Employee employee = tableEmployees.getSelectionModel().getSelectedItem();
 
-        txtID.setText(String.valueOf(employee.getId()));
-        txtFirstName.setText(employee.getFirstName());
-        txtLastName.setText(employee.getLastName());
-        txtEmail.setText(employee.getEmail());
-        txtPhone.setText(employee.getPhone());
-        comboUserType.getSelectionModel().select(employee.getUserType());
-        txtUsername.setText(employee.getUsername());
-        txtPassword.setText(employee.getPassword());
+        try {
+            txtID.setText(String.valueOf(employee.getId()));
+            txtFirstName.setText(employee.getFirstName());
+            txtLastName.setText(employee.getLastName());
+            txtEmail.setText(employee.getEmail());
+            txtPhone.setText(employee.getPhone());
+            comboUserType.getSelectionModel().select(employee.getUserType());
+            txtUsername.setText(employee.getUsername());
+            txtPassword.setText(employee.getPassword());
+        } catch (Exception ignored){
+
+        }
+
     }
 
     public void populateComboBox(){
@@ -217,28 +249,35 @@ public class EmployeesController implements Initializable {
 
     public void searchBar(){
         FilteredList<Employee> filteredList = new FilteredList<>(employees, b -> true);
-        txtSearchBar.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(employee -> {
+        txtSearchBar.textProperty().addListener((observable, oldValue, newValue) -> filteredList.setPredicate(employee -> {
 
-                if(newValue.isEmpty() || newValue.isBlank() || newValue == null){
-                    return  true;
-                }
+            if(newValue.isEmpty() || newValue.isBlank() || newValue == null){
+                return  true;
+            }
 
-                String searchKeyword = newValue.toLowerCase();
+            String searchKeyword = newValue.toLowerCase();
 
-                if(employee.getFirstName().toLowerCase().contains(searchKeyword)){
-                    return true; // match found
-                } else if (employee.getLastName().toLowerCase().contains(searchKeyword)){
-                    return true;
-                } else if (employee.getEmail().toLowerCase().contains(searchKeyword)){
-                    return true;
-                }
-                else return false;
-            });
-        });
+            if(employee.getFirstName().toLowerCase().contains(searchKeyword)){
+                return true; // match found
+            } else if (employee.getLastName().toLowerCase().contains(searchKeyword)){
+                return true;
+            } else if (employee.getEmail().toLowerCase().contains(searchKeyword)){
+                return true;
+            }
+            else return false;
+        }));
 
         SortedList<Employee> sortedList = new SortedList<>(filteredList);
         sortedList.comparatorProperty().bind(tableEmployees.comparatorProperty());
         tableEmployees.setItems(sortedList);
+    }
+
+    private boolean areRequiredFieldsAreFilled() {
+        return !txtFirstName.getText().isEmpty() &&
+                !txtLastName.getText().isEmpty() &&
+                !txtUsername.getText().isEmpty() &&
+                !txtPassword.getText().isEmpty() &&
+                !txtPhone.getText().isEmpty() &&
+                comboUserType.getValue() != null;
     }
 }
