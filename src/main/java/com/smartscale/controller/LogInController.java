@@ -1,7 +1,7 @@
 package com.smartscale.controller;
 
 import com.smartscale.util.Clock;
-import com.smartscale.DatabaseConnection;
+import com.smartscale.database.DatabaseConnection;
 import com.smartscale.util.Switch;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

@@ -1,6 +1,7 @@
 package com.smartscale.controller;
 
-import com.smartscale.DatabaseConnection;
+import com.smartscale.database.DatabaseConnection;
+import com.smartscale.database.LogbookDAO;
 import com.smartscale.model.Product;
 import com.smartscale.util.Clock;
 import com.smartscale.util.MessageDialog;
@@ -110,6 +111,7 @@ public class ProductsController implements Initializable {
                 clearTextFields();
                 searchBar();
                 MessageDialog.displayInformation("Product " + productName + " was added successfully!");
+                LogbookDAO.add(LogInController.getName() + " added a new product (" + productName + ")");
             }
             catch (Exception e){
                 MessageDialog.displayError(e.getMessage());
@@ -140,6 +142,7 @@ public class ProductsController implements Initializable {
                 clearTextFields();
                 searchBar();
                 MessageDialog.displayInformation("Update was successful! " + "(Product ID: " + id + ")");
+                LogbookDAO.add(LogInController.getName() + " updated a product (ID: " + id + ")");
 
             } catch (Exception e){
                 MessageDialog.displayError(e.getMessage());
@@ -167,6 +170,7 @@ public class ProductsController implements Initializable {
                 clearTextFields();
                 searchBar();
                 MessageDialog.displayInformation("Product (" + id + ") was deleted!");
+                LogbookDAO.add(LogInController.getName() + " deleted a product (" + id + ")");
 
             } catch (Exception e){
                 MessageDialog.displayError(e.getMessage());

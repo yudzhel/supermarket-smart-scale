@@ -1,8 +1,7 @@
-package com.smartscale;
+package com.smartscale.database;
 
 import com.smartscale.model.Employee;
 import com.smartscale.model.Product;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

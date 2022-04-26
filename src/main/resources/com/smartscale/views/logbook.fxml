@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -18,5 +20,11 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </Button>
+      <TableView fx:id="tableLogbook" layoutX="50.0" layoutY="80.0" prefHeight="452.0" prefWidth="798.0">
+        <columns>
+          <TableColumn fx:id="colDate" prefWidth="189.0" text="Date" />
+          <TableColumn fx:id="colAction" minWidth="0.0" prefWidth="608.0" text="Action" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

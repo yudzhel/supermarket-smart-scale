@@ -1,6 +1,7 @@
 package com.smartscale.controller;
 
-import com.smartscale.DatabaseConnection;
+import com.smartscale.database.DatabaseConnection;
+import com.smartscale.database.LogbookDAO;
 import com.smartscale.model.Employee;
 import com.smartscale.util.Clock;
 import com.smartscale.util.MessageDialog;
@@ -139,6 +140,7 @@ public class EmployeesController implements Initializable {
                 clearTextFields();
                 searchBar();
                 MessageDialog.displayInformation("User " + username + " was added successfully!");
+                LogbookDAO.add(LogInController.getName() + " added a new user (" + username + ")");
 
             } catch (Exception e){
                 MessageDialog.displayError(e.getMessage());
@@ -173,6 +175,7 @@ public class EmployeesController implements Initializable {
                 clearTextFields();
                 searchBar();
                 MessageDialog.displayInformation("Update was successful! " + "(Username: " + username + ")");
+                LogbookDAO.add(LogInController.getName() + " updated user (" + username + ")");
 
             } catch (Exception e){
                 MessageDialog.displayError(e.getMessage());
@@ -199,6 +202,7 @@ public class EmployeesController implements Initializable {
                 clearTextFields();
                 searchBar();
                 MessageDialog.displayInformation("User (" + username + ") was deleted!");
+                LogbookDAO.add(LogInController.getName() + " deleted user (" + username + ")");
 
             } catch (Exception e){
                 MessageDialog.displayError(e.getMessage());
