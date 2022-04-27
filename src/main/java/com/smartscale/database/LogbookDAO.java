@@ -43,9 +43,9 @@ public class LogbookDAO {
 
                 Timestamp timestamp = rs.getTimestamp("log_datetime");
                 String s = new SimpleDateFormat("MMM d, yyyy 'at' hh:mm:ss aaa").format(timestamp);
-                SimpleStringProperty var = new SimpleStringProperty(s);
+                SimpleStringProperty datetime = new SimpleStringProperty(s);
 
-                logbookData.add(new Logbook(var, rs.getString("log_message")));
+                logbookData.add(new Logbook(datetime, rs.getString("log_message")));
             }
 
         } catch (Exception e){

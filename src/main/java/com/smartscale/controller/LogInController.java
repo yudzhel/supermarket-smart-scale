@@ -5,6 +5,7 @@ import com.smartscale.database.DatabaseConnection;
 import com.smartscale.util.Switch;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -27,6 +28,9 @@ public class LogInController implements Initializable {
     private TextField txtUsername;
     @FXML
     private PasswordField txtPassword;
+    @FXML
+    private Button btnShowPassword;
+    private String password;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -75,6 +79,17 @@ public class LogInController implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+    }
+
+    public void showPasswordPressed() {
+        password = txtPassword.getText();
+        txtPassword.clear();
+        txtPassword.setPromptText(password);
+    }
+
+    public void showPasswordReleased() {
+        txtPassword.setText(password);
+        txtPassword.setPromptText("Password");
     }
 
     public void switchToEmployee() throws IOException {

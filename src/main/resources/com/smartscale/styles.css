@@ -16,3 +16,59 @@
     -fx-underline: true ;
     -fx-cursor: hand;
 }
+
+/******* MY ACCOUNT ******/
+
+#backgroundMyAccount {
+     -fx-background-image: url('images/myaccount/background.jpg');
+     -fx-background-repeat: stretch;
+     -fx-background-size: 900 650;
+     -fx-background-position: center center;
+}
+
+#txtID, #txtFirstName, #txtLastName, #txtUserType, #txtEmail, #txtPhone, #txtUsername, #txtPassword {
+    -fx-text-fill: #636166;
+    -fx-padding: 5px;
+}
+
+#flowpaneMyAccount {
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+/****** MY ACCOUNT *******/
+
+
+
+/******LOG IN*******/
+
+#backgroundLogIn {
+    -fx-background-image: url('images/login/login_background2.jpg');
+    -fx-background-repeat: stretch;
+    -fx-background-size: 900 650;
+    -fx-background-position: center center;
+}
+
+#anchorUserLogin {
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-background-color: rgba(50, 50, 50, 0.8);
+}
+
+#btnLogIn {
+    -fx-background-color: #219443 ;
+}
+
+#btnLogIn:hover {
+    -fx-background-color: #1c853b;
+}
+
+#btnCancel {
+    -fx-background-color: #0f5d70 ;
+}
+
+#btnCancel:hover {
+    -fx-background-color: #0d5466;
+}
+
+/******LOG IN*******/
