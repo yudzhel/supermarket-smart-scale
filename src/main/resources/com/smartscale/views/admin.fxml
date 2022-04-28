@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartscale.controller.AdminController">
+<AnchorPane fx:id="backgroundAdmin" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartscale.controller.AdminController">
    <children>
       <AnchorPane fx:id="anchorTop" prefHeight="35.0" prefWidth="900.0">
          <children>
@@ -15,66 +16,81 @@
             <Label fx:id="lblCurrentlyLoggedInText" alignment="CENTER_RIGHT" layoutX="693.0" layoutY="9.0" prefHeight="25.0" prefWidth="190.0" text="Label" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="5.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="202.0" layoutY="75.0" prefHeight="471.0" prefWidth="524.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="174.0">
+      <AnchorPane fx:id="anchorAdminButtons" layoutX="202.0" layoutY="47.0" prefHeight="476.0" prefWidth="524.0" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="202.0">
          <children>
-            <Button fx:id="btnMyAccount" layoutX="72.0" layoutY="20.0" mnemonicParsing="false" onAction="#myAccountButtonOnAction" prefHeight="205.0" prefWidth="224.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+            <Button fx:id="btnMyAccount" layoutX="38.0" layoutY="36.0" mnemonicParsing="false" onAction="#myAccountButtonOnAction" prefHeight="182.0" prefWidth="190.0" AnchorPane.bottomAnchor="258.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="268.0" AnchorPane.topAnchor="36.0">
                <graphic>
-                  <ImageView fitHeight="124.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="btnMyAccount" fitHeight="96.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/user.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Label alignment="CENTER" layoutX="57.0" layoutY="186.0" prefHeight="30.0" prefWidth="152.0" text="MY ACCOUNT" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="315.0">
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Label alignment="CENTER" layoutX="66.0" layoutY="180.0" prefHeight="30.0" prefWidth="134.0" text="MY ACCOUNT" textFill="WHITE" AnchorPane.leftAnchor="66.0" AnchorPane.rightAnchor="296.0">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btnProducts" layoutX="281.0" layoutY="20.0" mnemonicParsing="false" onAction="#productsButtonOnAction" prefHeight="205.0" prefWidth="224.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="20.0">
+            <Button fx:id="btnProducts" layoutX="268.0" layoutY="20.0" mnemonicParsing="false" onAction="#productsButtonOnAction" prefHeight="182.0" prefWidth="190.0" AnchorPane.bottomAnchor="258.0" AnchorPane.leftAnchor="268.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="36.0">
                <graphic>
-                  <ImageView fitHeight="124.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="94.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/addproduct.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Label alignment="CENTER" layoutX="262.0" layoutY="186.0" prefHeight="30.0" prefWidth="152.0" text="PRODUCTS" AnchorPane.leftAnchor="315.0" AnchorPane.rightAnchor="57.0">
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Label alignment="CENTER" layoutX="301.0" layoutY="180.0" prefHeight="30.0" prefWidth="152.0" text="PRODUCTS" textFill="WHITE" AnchorPane.leftAnchor="301.0" AnchorPane.rightAnchor="71.0">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="20.0" layoutY="246.0" mnemonicParsing="false" onAction="#logbookButtonOnAction" prefHeight="205.0" prefWidth="224.0" AnchorPane.leftAnchor="20.0">
+            <Button fx:id="btnLogbook" layoutX="32.0" layoutY="246.0" mnemonicParsing="false" onAction="#logbookButtonOnAction" prefHeight="182.0" prefWidth="190.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="268.0">
                <graphic>
-                  <ImageView fitHeight="124.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="94.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/logbook.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Label alignment="CENTER" layoutX="5.0" layoutY="412.0" prefHeight="30.0" prefWidth="152.0" text="LOGBOOK" AnchorPane.leftAnchor="57.0">
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Label alignment="CENTER" layoutX="57.0" layoutY="397.0" prefHeight="30.0" prefWidth="152.0" text="LOGBOOK" textFill="WHITE" AnchorPane.leftAnchor="57.0">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btnEmployees" layoutX="277.0" layoutY="246.0" mnemonicParsing="false" onAction="#employeesButtonOnAction" prefHeight="205.0" prefWidth="224.0" AnchorPane.rightAnchor="20.0">
+            <Button fx:id="btnEmployees" layoutX="268.0" layoutY="258.0" mnemonicParsing="false" onAction="#employeesButtonOnAction" prefHeight="182.0" prefWidth="190.0" AnchorPane.leftAnchor="268.0" AnchorPane.rightAnchor="38.0">
                <graphic>
                   <ImageView fitHeight="124.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/employees.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Label alignment="CENTER" layoutX="262.0" layoutY="412.0" prefHeight="30.0" prefWidth="152.0" text="EMPLOYEES" AnchorPane.rightAnchor="57.0">
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Label alignment="CENTER" layoutX="287.0" layoutY="397.0" prefHeight="30.0" prefWidth="152.0" text="EMPLOYEES" textFill="WHITE" AnchorPane.rightAnchor="57.0">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="btnLogOut" layoutX="733.0" layoutY="570.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="56.0" prefWidth="152.0" style="-fx-background-color: RED;" text="LOG OUT" textFill="WHITE">
+      <Button fx:id="btnLogOut" layoutX="751.0" layoutY="583.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="43.0" prefWidth="134.0" text="LOG OUT" textFill="WHITE">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
    </children>
 </AnchorPane>

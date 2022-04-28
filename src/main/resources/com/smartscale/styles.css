@@ -34,6 +34,15 @@
 #flowpaneMyAccount {
     -fx-border-radius: 5;
     -fx-background-radius: 5;
+    -fx-background-color: rgba(50, 50, 50, 0.8);
+}
+
+#btnBack {
+    -fx-background-color: #c41818 ;
+}
+
+#btnBack:hover {
+    -fx-background-color: #a61212 ;
 }
 
 /****** MY ACCOUNT *******/
@@ -72,3 +81,250 @@
 }
 
 /******LOG IN*******/
+
+
+
+/****** ADMIN *******/
+
+#btnLogOut {
+    -fx-background-color: #c41818 ;
+}
+
+#btnLogOut:hover {
+    -fx-background-color: #a61212 ;
+}
+
+#backgroundAdmin {
+    -fx-background-image: url('images/login/login_background2.jpg');
+    -fx-background-repeat: stretch;
+    -fx-background-size: 900 650;
+    -fx-background-position: center center;
+}
+
+#anchorAdminButtons {
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-background-color: rgba(50, 50, 50, 0.8);
+}
+
+#btnMyAccount, #btnProducts, #btnLogbook, #btnEmployees{
+    -fx-background-color: #76a8a7;
+}
+
+#btnMyAccount:hover, #btnProducts:hover, #btnLogbook:hover, #btnEmployees:hover{
+    -fx-background-color: #5b8583;
+}
+
+
+/****** ADMIN *******/
+
+
+/******* LOGBOOK *******/
+
+#backgroundLogbook {
+    -fx-background-color: #93f9b944;
+}
+
+#tableLogbook{
+    -fx-background-color: transparent;
+}
+
+#tableLogbook .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+#tableLogbook .corner {
+    -fx-background-color: transparent;
+}
+
+#tableLogbook .column-header-background{
+    -fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b944);
+    -fx-background-radius: 7px 7px 0px 0px;
+    -fx-background-insets: 0 11px 0 0;
+    -fx-padding: 0 0 5px 0;
+}
+
+#tableLogbook .column-header {
+    -fx-background-color: transparent;
+}
+
+#tableLogbook .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+}
+
+.table-row-cell: hover {
+    -fx-background-color: #93f9b911;
+    -fx-text-background-color: red;
+}
+
+.table-row-cell: odd{
+    -fx-background-color: #93f9b911;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell: even{
+    -fx-background-color: #1dbbdd11;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+#tableLogbook .virtual-flow .scroll-bar:vertical,
+#tableLogbook .virtual-flow .scroll-bar:vertical .track,
+#tableLogbook .virtual-flow .scroll-bar:vertical .track-background,
+#tableLogbook .virtual-flow .scroll-bar:horizontal,
+#tableLogbook .virtual-flow .scroll-bar:horizontal .track,
+#tableLogbook .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+}
+
+#tableLogbook .virtual-flow .scroll-bar .increment-button,
+#tableLogbook .virtual-flow .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 2;
+}
+
+#tableLogbook .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color:  linear-gradient(to bottom, #1dbbdd44, #93f9b944);
+}
+
+#tableLogbook .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color:  linear-gradient(to right, #1dbbdd44, #93f9b944);
+}
+
+.table-row-cell: highlighted {
+    -fx-background-color: #81c483;
+    -fx-background-radius: 15px;
+}
+
+/******* LOGBOOK *******/
+
+
+/******* PRODUCTS *******/
+
+#backgroundProducts {
+    -fx-background-image: url('images/login/login_background2.jpg');
+    -fx-background-repeat: stretch;
+    -fx-background-size: 900 650;
+    -fx-background-position: center center;
+}
+
+#anchorProductDetails {
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-background-color: rgba(50, 50, 50, 0.8);
+}
+
+#btnAdd {
+    -fx-background-color: #219443 ;
+}
+
+#btnAdd:hover {
+    -fx-background-color: #1c853b;
+}
+
+#btnClear {
+    -fx-background-color: #0f5d70 ;
+}
+
+#btnClear:hover {
+    -fx-background-color: #0d5466;
+}
+
+#btnDelete {
+    -fx-background-color: #bd1313 ;
+}
+
+#btnDelete:hover {
+    -fx-background-color: #9c1010;
+}
+
+#btnUpdate {
+    -fx-background-color: #0bb38b ;
+}
+
+#btnUpdate:hover {
+    -fx-background-color: #099c79;
+}
+
+#tableProducts{
+    -fx-background-color: transparent;
+}
+
+#tableProducts .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+#tableProducts .corner {
+    -fx-background-color: transparent;
+}
+
+#tableProducts .column-header-background{
+    -fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b944);
+    -fx-background-radius: 7px 7px 0px 0px;
+    -fx-background-insets: 0 11px 0 0;
+    -fx-padding: 0 0 5px 0;
+}
+
+#tableProducts .column-header {
+    -fx-background-color: transparent;
+}
+
+#tableProducts .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+}
+
+.table-row-cell: hover {
+    -fx-background-color: #93f9b911;
+    -fx-text-background-color: red;
+}
+
+.table-row-cell: odd{
+    -fx-background-color: #aee6d9;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell: even{
+    -fx-background-color: #abd4ca;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+#tableProducts .virtual-flow .scroll-bar:vertical,
+#tableProducts .virtual-flow .scroll-bar:vertical .track,
+#tableProducts .virtual-flow .scroll-bar:vertical .track-background,
+#tableProducts .virtual-flow .scroll-bar:horizontal,
+#tableProducts .virtual-flow .scroll-bar:horizontal .track,
+#tableProducts .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+}
+
+#tableProducts .virtual-flow .scroll-bar .increment-button,
+#tableProducts .virtual-flow .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 2;
+}
+
+#tableProducts .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color:  linear-gradient(to bottom, #1dbbdd44, #93f9b944);
+}
+
+#tableProducts .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color:  linear-gradient(to right, #1dbbdd44, #93f9b944);
+}
+
+.table-row-cell: highlighted {
+    -fx-background-color: #81c483;
+    -fx-background-radius: 15px;
+}
+
+#txtProductID, #txtProductName, txtPrice, txtImageURL  {
+    -fx-text-fill: #636166;
+    -fx-padding: 5px;
+}
+
+/******* PRODUCTS *******/
+

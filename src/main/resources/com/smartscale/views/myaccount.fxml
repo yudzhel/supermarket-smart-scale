@@ -17,12 +17,15 @@
             <Label fx:id="lblCurrentlyLoggedInText" alignment="CENTER_RIGHT" layoutX="693.0" layoutY="9.0" prefHeight="25.0" prefWidth="190.0" text="Label" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="5.0" />
          </children>
       </AnchorPane>
-      <Button fx:id="btnBack" layoutX="48.0" layoutY="565.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="56.0" prefWidth="152.0" style="-fx-background-color: RED;" text="BACK" textFill="WHITE" AnchorPane.bottomAnchor="29.0">
+      <Button fx:id="btnBack" layoutX="47.0" layoutY="571.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="50.0" prefWidth="141.0" text="BACK" textFill="WHITE" AnchorPane.bottomAnchor="29.0">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <FlowPane fx:id="flowpaneMyAccount" layoutX="442.0" layoutY="81.0" prefHeight="559.0" prefWidth="432.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="29.0">
+      <FlowPane fx:id="flowpaneMyAccount" layoutX="442.0" layoutY="81.0" prefHeight="556.0" prefWidth="432.0" AnchorPane.bottomAnchor="29.0">
          <children>
             <Label alignment="BOTTOM_LEFT" prefHeight="39.0" prefWidth="134.0" text="ID" textFill="WHITE">
                <FlowPane.margin>

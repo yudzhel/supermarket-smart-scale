@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartscale.controller.LogbookController">
+<AnchorPane fx:id="backgroundLogbook" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartscale.controller.LogbookController">
    <children>
       <AnchorPane fx:id="anchorTop" prefHeight="35.0" prefWidth="900.0">
          <children>
@@ -15,14 +16,17 @@
             <Label fx:id="lblCurrentlyLoggedInText" alignment="CENTER_RIGHT" layoutX="693.0" layoutY="9.0" prefHeight="25.0" prefWidth="190.0" text="Label" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="5.0" />
          </children>
       </AnchorPane>
-      <Button fx:id="btnBack" layoutX="48.0" layoutY="565.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="56.0" prefWidth="152.0" style="-fx-background-color: RED;" text="BACK" textFill="WHITE" AnchorPane.bottomAnchor="29.0">
+      <Button fx:id="btnBack" layoutX="48.0" layoutY="565.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="35.0" prefWidth="140.0" text="BACK" textFill="WHITE" AnchorPane.bottomAnchor="29.0">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <TableView fx:id="tableLogbook" layoutX="50.0" layoutY="80.0" prefHeight="452.0" prefWidth="798.0">
+      <TableView fx:id="tableLogbook" layoutX="50.0" layoutY="80.0" prefHeight="452.0" prefWidth="810.0">
         <columns>
-          <TableColumn fx:id="colDate" prefWidth="189.0" text="Date" />
+          <TableColumn fx:id="colDate" prefWidth="189.0" resizable="false" text="Date" />
           <TableColumn fx:id="colAction" minWidth="0.0" prefWidth="608.0" text="Action" />
         </columns>
       </TableView>
