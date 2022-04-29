@@ -153,18 +153,18 @@
     -fx-padding: 2 0 2 10px;
 }
 
-.table-row-cell: hover {
+#tableLogbook .table-row-cell: hover {
     -fx-background-color: #93f9b911;
     -fx-text-background-color: red;
 }
 
-.table-row-cell: odd{
+#tableLogbook .table-row-cell: odd{
     -fx-background-color: #93f9b911;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
 }
 
-.table-row-cell: even{
+#tableLogbook .table-row-cell: even{
     -fx-background-color: #1dbbdd11;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
@@ -193,7 +193,7 @@
     -fx-background-color:  linear-gradient(to right, #1dbbdd44, #93f9b944);
 }
 
-.table-row-cell: highlighted {
+#tableLogbook .table-row-cell: highlighted {
     -fx-background-color: #81c483;
     -fx-background-radius: 15px;
 }
@@ -203,14 +203,14 @@
 
 /******* PRODUCTS *******/
 
-#backgroundProducts {
+#backgroundProducts, #backgroundEmployees {
     -fx-background-image: url('images/login/login_background2.jpg');
     -fx-background-repeat: stretch;
     -fx-background-size: 900 650;
     -fx-background-position: center center;
 }
 
-#anchorProductDetails {
+#anchorProductDetails, #anchorEmployees {
     -fx-border-radius: 5;
     -fx-background-radius: 5;
     -fx-background-color: rgba(50, 50, 50, 0.8);
@@ -248,83 +248,36 @@
     -fx-background-color: #099c79;
 }
 
-#tableProducts{
-    -fx-background-color: transparent;
-}
-
-#tableProducts .column-header-background .filler {
-    -fx-background-color: transparent;
-}
-
-#tableProducts .corner {
-    -fx-background-color: transparent;
-}
-
-#tableProducts .column-header-background{
-    -fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b944);
-    -fx-background-radius: 7px 7px 0px 0px;
-    -fx-background-insets: 0 11px 0 0;
-    -fx-padding: 0 0 5px 0;
-}
-
-#tableProducts .column-header {
-    -fx-background-color: transparent;
-}
-
-#tableProducts .table-cell{
-    -fx-border-color: transparent;
-    -fx-padding: 2 0 2 10px;
-}
-
-.table-row-cell: hover {
-    -fx-background-color: #93f9b911;
-    -fx-text-background-color: red;
-}
-
-.table-row-cell: odd{
-    -fx-background-color: #aee6d9;
-    -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em;
-}
-
-.table-row-cell: even{
-    -fx-background-color: #abd4ca;
-    -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em;
-}
-
-#tableProducts .virtual-flow .scroll-bar:vertical,
-#tableProducts .virtual-flow .scroll-bar:vertical .track,
-#tableProducts .virtual-flow .scroll-bar:vertical .track-background,
-#tableProducts .virtual-flow .scroll-bar:horizontal,
-#tableProducts .virtual-flow .scroll-bar:horizontal .track,
-#tableProducts .virtual-flow .scroll-bar:horizontal .track-background {
-    -fx-background-color: transparent;
-}
-
-#tableProducts .virtual-flow .scroll-bar .increment-button,
-#tableProducts .virtual-flow .scroll-bar .decrement-button {
-    -fx-opacity: 0;
-    -fx-padding: 2;
-}
-
-#tableProducts .virtual-flow .scroll-bar:vertical .thumb{
-    -fx-background-color:  linear-gradient(to bottom, #1dbbdd44, #93f9b944);
-}
-
-#tableProducts .virtual-flow .scroll-bar:horizontal .thumb {
-    -fx-background-color:  linear-gradient(to right, #1dbbdd44, #93f9b944);
-}
-
-.table-row-cell: highlighted {
-    -fx-background-color: #81c483;
-    -fx-background-radius: 15px;
-}
-
-#txtProductID, #txtProductName, txtPrice, txtImageURL  {
+#txtProductID, #txtProductName, #txtPrice, #txtImageURL  {
     -fx-text-fill: #636166;
     -fx-padding: 5px;
 }
 
 /******* PRODUCTS *******/
 
+
+/****** EMPLOYEES ********/
+
+#txtID, #txtUsername, #txtPhone, #txtPassword, #txtLastName, #txtFirstName, #txtEmail{
+    -fx-text-fill: #636166;
+    -fx-padding: 5px;
+}
+
+/****** EMPLOYEES ********/
+
+/****** FRUITS ********/
+
+#titledPaneKg > .title {
+-fx-background-color: #0f852e;
+ -fx-border-radius: 50px;
+ -fx-background-radius: 5 5 0 0;
+ /*-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);*/
+}
+
+#anchorKg {
+   -fx-background-color: white;
+   -fx-border-radius: 50px;
+   -fx-background-radius: 5 5 5 5;
+}
+
+/****** FRUITS ********/

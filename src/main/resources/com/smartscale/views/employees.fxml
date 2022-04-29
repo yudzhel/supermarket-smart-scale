@@ -14,37 +14,43 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartscale.controller.EmployeesController">
+<AnchorPane fx:id="backgroundEmployees" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartscale.controller.EmployeesController">
    <children>
       <AnchorPane fx:id="anchorTop" prefHeight="35.0" prefWidth="900.0">
          <children>
             <Label fx:id="lblTimeAndDate" layoutX="43.0" layoutY="9.0" prefHeight="25.0" prefWidth="190.0" text="Label" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="5.0" />
             <Label fx:id="lblCurrentlyLoggedInText" alignment="CENTER_RIGHT" layoutX="693.0" layoutY="9.0" prefHeight="25.0" prefWidth="190.0" text="Label" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="5.0" />
+            <Label layoutX="410.0" layoutY="6.0" prefHeight="24.0" prefWidth="81.0" text="EMPLOYEES" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <TableView fx:id="tableEmployees" layoutX="372.0" layoutY="139.0" onMouseClicked="#tableToTextFields" prefHeight="411.0" prefWidth="513.0">
         <columns>
           <TableColumn fx:id="colID" prefWidth="39.0" text="ID" />
-          <TableColumn fx:id="colFirstName" prefWidth="77.66665649414062" text="First Name" />
-            <TableColumn fx:id="colLastName" prefWidth="75.33331298828125" text="Last Name" />
-            <TableColumn fx:id="colUserType" prefWidth="68.66668701171875" text="User Type" />
-            <TableColumn fx:id="colEmail" prefWidth="69.0" text="Email" />
-            <TableColumn fx:id="colPhone" prefWidth="55.0" text="Phone" />
-            <TableColumn fx:id="colUsername" prefWidth="71.0" text="Username" />
-            <TableColumn fx:id="colPassword" prefWidth="75.0" text="Password" />
+          <TableColumn fx:id="colFirstName" prefWidth="87.0" text="First Name" />
+            <TableColumn fx:id="colLastName" prefWidth="86.0" text="Last Name" />
+            <TableColumn fx:id="colUserType" prefWidth="117.0" text="User Type" />
+            <TableColumn fx:id="colEmail" prefWidth="111.0" text="Email" />
+            <TableColumn fx:id="colPhone" minWidth="3.0" prefWidth="118.0" text="Phone" />
+            <TableColumn fx:id="colUsername" minWidth="1.0" prefWidth="104.0" text="Username" />
+            <TableColumn fx:id="colPassword" minWidth="0.0" prefWidth="85.0" text="Password" />
         </columns>
       </TableView>
-      <Label layoutX="394.0" layoutY="39.0" text="EMPLOYEES">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <FlowPane layoutX="25.0" layoutY="97.0" prefHeight="454.0" prefWidth="326.0" style="-fx-background-color: grey;">
+      <FlowPane fx:id="anchorEmployees" layoutX="25.0" layoutY="97.0" prefHeight="454.0" prefWidth="326.0">
          <children>
-            <Label prefHeight="17.0" prefWidth="120.0" text="ID">
+            <Label prefHeight="17.0" prefWidth="120.0" text="ID" textFill="WHITE">
                <FlowPane.margin>
-                  <Insets right="10.0" />
+                  <Insets right="10.0" top="20.0" />
                </FlowPane.margin>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Label>
             <TextField fx:id="txtID" editable="false" prefHeight="25.0" prefWidth="180.0">
                <FlowPane.margin>
@@ -54,70 +60,112 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </TextField>
-            <Label prefHeight="17.0" prefWidth="120.0" text="First Name">
+            <Label prefHeight="17.0" prefWidth="120.0" text="First Name" textFill="WHITE">
                <FlowPane.margin>
-                  <Insets right="10.0" />
+                  <Insets right="10.0" top="20.0" />
                </FlowPane.margin>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Label>
             <TextField fx:id="txtFirstName" prefHeight="25.0" prefWidth="180.0">
                <FlowPane.margin>
                   <Insets top="20.0" />
                </FlowPane.margin>
             </TextField>
-            <Label prefHeight="17.0" prefWidth="120.0" text="Last Name">
+            <Label prefHeight="17.0" prefWidth="120.0" text="Last Name" textFill="WHITE">
                <FlowPane.margin>
-                  <Insets right="10.0" />
+                  <Insets right="10.0" top="20.0" />
                </FlowPane.margin>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Label>
             <TextField fx:id="txtLastName" prefHeight="25.0" prefWidth="180.0">
                <FlowPane.margin>
                   <Insets top="20.0" />
                </FlowPane.margin>
             </TextField>
-            <Label prefHeight="17.0" prefWidth="120.0" text="User Type">
+            <Label prefHeight="17.0" prefWidth="120.0" text="User Type" textFill="WHITE">
                <FlowPane.margin>
-                  <Insets right="10.0" />
+                  <Insets right="10.0" top="20.0" />
                </FlowPane.margin>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Label>
             <ComboBox fx:id="comboUserType" prefHeight="25.0" prefWidth="180.0">
                <FlowPane.margin>
                   <Insets top="20.0" />
                </FlowPane.margin>
             </ComboBox>
-            <Label prefHeight="17.0" prefWidth="120.0" text="Email">
+            <Label prefHeight="17.0" prefWidth="120.0" text="Email" textFill="WHITE">
                <FlowPane.margin>
-                  <Insets right="10.0" />
+                  <Insets right="10.0" top="20.0" />
                </FlowPane.margin>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Label>
             <TextField fx:id="txtEmail" prefHeight="25.0" prefWidth="180.0">
                <FlowPane.margin>
                   <Insets top="20.0" />
                </FlowPane.margin>
             </TextField>
-            <Label prefHeight="17.0" prefWidth="120.0" text="Phone">
+            <Label prefHeight="17.0" prefWidth="120.0" text="Phone" textFill="WHITE">
                <FlowPane.margin>
-                  <Insets right="10.0" />
+                  <Insets right="10.0" top="20.0" />
                </FlowPane.margin>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Label>
             <TextField fx:id="txtPhone" prefHeight="25.0" prefWidth="180.0">
                <FlowPane.margin>
                   <Insets top="20.0" />
                </FlowPane.margin>
             </TextField>
-            <Label prefHeight="17.0" prefWidth="120.0" text="Username">
+            <Label prefHeight="17.0" prefWidth="120.0" text="Username" textFill="WHITE">
                <FlowPane.margin>
-                  <Insets right="10.0" />
+                  <Insets right="10.0" top="20.0" />
                </FlowPane.margin>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Label>
             <TextField fx:id="txtUsername" prefHeight="25.0" prefWidth="180.0">
                <FlowPane.margin>
                   <Insets top="20.0" />
                </FlowPane.margin>
             </TextField>
-            <Label prefHeight="17.0" prefWidth="120.0" text="Password">
+            <Label prefHeight="17.0" prefWidth="120.0" text="Password" textFill="WHITE">
                <FlowPane.margin>
-                  <Insets right="10.0" />
+                  <Insets right="10.0" top="20.0" />
                </FlowPane.margin>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Label>
             <TextField fx:id="txtPassword" prefHeight="25.0" prefWidth="180.0">
                <FlowPane.margin>
@@ -126,11 +174,41 @@
             </TextField>
          </children>
       </FlowPane>
-      <Button fx:id="btnAdd" layoutX="23.0" layoutY="579.0" mnemonicParsing="false" onAction="#addUser" prefHeight="40.0" prefWidth="117.0" text="Add" />
-      <Button fx:id="btnDelete" layoutX="148.0" layoutY="579.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="40.0" prefWidth="120.0" text="Delete" />
-      <Button fx:id="btnBack" layoutX="765.0" layoutY="579.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="40.0" prefWidth="121.0" text="BACK" />
-      <Button fx:id="btnUpdate" layoutX="276.0" layoutY="579.0" mnemonicParsing="false" onAction="#updateUser" prefHeight="40.0" prefWidth="121.0" text="Update" />
-      <Button fx:id="btnClear" layoutX="406.0" layoutY="579.0" mnemonicParsing="false" onAction="#clearTextFields" prefHeight="40.0" prefWidth="121.0" text="Clear" />
+      <Button fx:id="btnAdd" layoutX="23.0" layoutY="579.0" mnemonicParsing="false" onAction="#addUser" prefHeight="40.0" prefWidth="117.0" text="Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="btnDelete" layoutX="148.0" layoutY="579.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="40.0" prefWidth="120.0" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="btnBack" layoutX="765.0" layoutY="579.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="40.0" prefWidth="121.0" text="BACK" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="btnUpdate" layoutX="276.0" layoutY="579.0" mnemonicParsing="false" onAction="#updateUser" prefHeight="40.0" prefWidth="121.0" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="btnClear" layoutX="406.0" layoutY="579.0" mnemonicParsing="false" onAction="#clearTextFields" prefHeight="40.0" prefWidth="121.0" text="Clear" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <FlowPane layoutX="372.0" layoutY="97.0" prefHeight="25.0" prefWidth="513.0">
          <children>
             <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
