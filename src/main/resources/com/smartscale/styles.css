@@ -267,17 +267,60 @@
 
 /****** FRUITS ********/
 
-#titledPaneKg > .title {
--fx-background-color: #0f852e;
+#titledPaneKg > .title, #titledPaneDollarKg > .title, #titledPaneTotal > .title {
+ -fx-background-color: #0f852e;
  -fx-border-radius: 50px;
  -fx-background-radius: 5 5 0 0;
- /*-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);*/
+ -fx-effect: dropshadow(three-pass-box, grey, 10, 0, 2, 0);
 }
 
-#anchorKg {
+#anchorKg, #anchorDollarKg, #anchorTotal  {
    -fx-background-color: white;
-   -fx-border-radius: 50px;
-   -fx-background-radius: 5 5 5 5;
+   -fx-border-radius: 80px;
+   -fx-background-radius: 0 0 8 8;
 }
+
+#titledPaneKg > .content, #titledPaneDollarKg > .content, #titledPaneTotal > .content
+{
+   -fx-background-color: transparent;
+   -fx-border-radius: 80px;
+   -fx-background-radius: 0 0 8 8;
+ }
+
+#txtKg {
+    -fx-padding: 0;
+    -fx-border: gone;
+    -fx-background-color: white, white;
+ }
+
+#txtKg:focused {
+     -fx-background-color: white, white;
+ }
+
+ #btnPlaceholder, #btnDisplayMessage, #btnGetReceipt {
+    -fx-background-color: white;
+    -fx-border-radius: 60px;
+    -fx-background-radius: 6;
+    -fx-effect: dropshadow(three-pass-box, grey, 10, 0, 2, 2);
+ }
+
+ #btnFruits {
+    -fx-background-color: #1D7B38;
+    -fx-text-fill: white;
+ }
+
+ #btnFruits:hover {
+     -fx-background-color: #165F2A;
+  }
+
+ #btnVegetables {
+     -fx-background-color: #32334D;
+     -fx-text-fill: white;
+  }
+
+  #btnVegetables:hover {
+      -fx-background-color: #2C2D40;
+    }
+
 
 /****** FRUITS ********/
