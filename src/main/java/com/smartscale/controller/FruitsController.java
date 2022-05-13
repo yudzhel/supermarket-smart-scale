@@ -2,24 +2,17 @@ package com.smartscale.controller;
 
 import com.smartscale.database.FruitsDAO;
 import com.smartscale.model.Fruit;
-import com.smartscale.model.Product;
 import com.smartscale.util.Clock;
+import com.smartscale.util.ShowMessage;
 import com.smartscale.util.Switch;
-import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -40,9 +33,19 @@ public class FruitsController implements Initializable{
     private TextField txtKg;
     @FXML
     private GridPane gridFruits;
+    @FXML
+    private Button btnDisplayMessage;
+    @FXML
+    private Button btnChosenProduct;
+    @FXML
+    private Button btnGetReceipt;
+    @FXML
+    private AnchorPane anchorTop, anchorCategoryAndPages;
+    @FXML
+    private FlowPane flowPaneCalculate, flowPaneButtonsTop, flowPaneButtonsBottom;
 
     private static final DecimalFormat df = new DecimalFormat("0.00");
-    private boolean isClicked = false;
+    private boolean isDisabled = true;
     ObservableList<Fruit> fruits = FruitsDAO.getFruitsData();
     List<Fruit> fruitsList = fruits.stream().toList();
 
@@ -52,6 +55,9 @@ public class FruitsController implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Clock.initClock(lblTimeAndDate);
         populateGridPane();
+        ShowMessage.displayChooseProductMessage(btnDisplayMessage);
+        activateGetReceipt();
+        backgroundClicked();
     }
 
 
@@ -69,11 +75,64 @@ public class FruitsController implements Initializable{
             double total = kg * productPrice;
             labelTotal.setText(String.valueOf(df.format(total)));
 
+            activateGetReceipt();
+
+
         } catch (NumberFormatException nfe) {
             txtKg.setPromptText("0.00");
             labelTotal.setText("0.00");
         }
 
+    }
+
+    public void activateGetReceipt() {
+
+        labelTotal.textProperty().addListener((ov, t, t1) -> {
+            String total = labelTotal.getText();
+
+            if (!total.equals("0.00")) {
+                ShowMessage.displayGetReceiptMessage(btnDisplayMessage);
+                btnGetReceipt.setDisable(false);
+                isDisabled = false;
+                btnGetReceipt.setCursor(Cursor.HAND);
+                btnGetReceipt.setStyle("""
+                        -fx-background-color: white;
+                        -fx-border-radius: 60px;
+                        -fx-background-radius: 6;
+                        -fx-effect: dropshadow(three-pass-box, grey, 10, 0, 2, 2);
+                        -fx-text-fill: #0f852e""");
+            }
+
+            else{
+                    btnGetReceipt.setDisable(true);
+                    isDisabled = true;
+                    ShowMessage.displayEnterKgMessage(btnDisplayMessage);
+                }
+        });
+
+        btnGetReceipt.setOnMouseEntered(e -> {
+
+            if(!isDisabled) {
+                btnGetReceipt.setStyle("""
+                        -fx-background-color: #0f852e;
+                        -fx-border-radius: 60px;
+                        -fx-background-radius: 6;
+                        -fx-effect: dropshadow(three-pass-box, grey, 10, 0, 2, 2);
+                        -fx-text-fill: white""");
+            }
+        });
+
+        btnGetReceipt.setOnMouseExited(e -> {
+
+            if(!isDisabled) {
+                btnGetReceipt.setStyle("""
+                        -fx-background-color: white;
+                        -fx-border-radius: 60px;
+                        -fx-background-radius: 6;
+                        -fx-effect: dropshadow(three-pass-box, grey, 10, 0, 2, 2);
+                        -fx-text-fill: #0f852e""");
+            }
+        });
     }
 
     public void populateGridPane() {
@@ -82,7 +141,7 @@ public class FruitsController implements Initializable{
         labelPageNumber.setText(pagesText);
         int column = 0;
         int row = 0;
-        int size = fruits.size();
+        //int size = fruits.size();
 
         for (Fruit fruit : fruitsList) {
 
@@ -92,54 +151,43 @@ public class FruitsController implements Initializable{
             }
 
             Button button = new Button();
-            gridFruits.add(button, column++, row);
             button.setText(fruit.getFruitName());
             button.setPrefSize(200, 200);
-            buttonStyle(button);
+            gridFruits.add(button, column++, row);
 
-            button.setOnAction(actionEvent -> {
-                labelDollarKg.setText(fruit.getFruitPrice().toString());
-            });
+            button.setOnAction(actionEvent -> labelDollarKg.setText(fruit.getFruitPrice().toString()));
 
-            button.setOnMouseEntered(e -> {
-                button.setStyle("""
-                        -fx-border-color: #0f852e;
-                        -fx-border-width: 5px;
-                        """);
+            button.setOnMouseEntered(e -> button.setCursor(Cursor.HAND));
 
-                button.setCursor(Cursor.HAND);
-            });
-
-            button.setOnMouseExited(e -> {
-                if(isClicked){
-                    button.setStyle("""
-                        -fx-border-color: #0f852e;
-                        -fx-border-width: 5px;
-                        """);
-
-                    isClicked = false;
-                }
-                else {
-                    buttonStyle(button);
-                }
-            });
+            button.setOnMouseExited(e -> button.setCursor(Cursor.DEFAULT));
 
             button.setOnMouseClicked(e -> {
-                isClicked = true;
-            });
+
+                txtKg.setDisable(false);
+                txtKg.clear();
+                labelTotal.setText("0.00");
+                btnChosenProduct.setText(fruit.getFruitName());
+                ShowMessage.displayEnterKgMessage(btnDisplayMessage);
+
+                });
+                }
 
         }
-    }
 
+    public void backgroundClicked(){
 
-    public void buttonStyle(Button button){
-        button.setStyle("""
-                     -fx-background-radius: 10px;
-                     -fx-background-color: white;
-                     -fx-border-radius: 60px;
-                     -fx-background-radius: 6;
-                     -fx-effect: dropshadow(three-pass-box, grey, 10, 0, 2, 2);
-                    """);
+        Pane[] currentPane = {anchorTop, anchorCategoryAndPages, flowPaneCalculate, flowPaneButtonsTop, flowPaneButtonsBottom,
+        gridFruits};
+
+        for(Pane pane: currentPane){
+            pane.setOnMouseClicked(e ->{
+                txtKg.clear();
+                txtKg.setDisable(true);
+                btnChosenProduct.setText("");
+                btnGetReceipt.setDisable(true);
+            });
+        }
+
     }
 
 

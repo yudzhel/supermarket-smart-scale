@@ -297,11 +297,15 @@
      -fx-background-color: white, white;
  }
 
- #btnPlaceholder, #btnDisplayMessage, #btnGetReceipt {
+ #btnChosenProduct, #btnDisplayMessage, #btnGetReceipt {
     -fx-background-color: white;
     -fx-border-radius: 60px;
     -fx-background-radius: 6;
     -fx-effect: dropshadow(three-pass-box, grey, 10, 0, 2, 2);
+ }
+
+ #btnGetReceipt {
+   -fx-text-fill: #0f852e;
  }
 
  #btnFruits {

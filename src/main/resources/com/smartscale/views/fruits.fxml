@@ -27,7 +27,7 @@
               <content>
                 <AnchorPane fx:id="anchorKg" minHeight="30.0" minWidth="0.0" prefHeight="50.0" prefWidth="215.0">
                      <children>
-                        <TextField fx:id="txtKg" alignment="CENTER_RIGHT" layoutX="-306.0" layoutY="-24.0" onKeyTyped="#calculateTotal" prefHeight="78.0" prefWidth="248.0" promptText="0.00" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TextField fx:id="txtKg" alignment="CENTER_RIGHT" disable="true" layoutX="-306.0" layoutY="-24.0" onKeyTyped="#calculateTotal" prefHeight="78.0" prefWidth="248.0" promptText="0.00" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>
@@ -91,14 +91,17 @@
             </TitledPane>
          </children>
       </FlowPane>
-      <FlowPane layoutY="126.0" prefHeight="51.0" prefWidth="900.0">
+      <FlowPane fx:id="flowPaneButtonsTop" layoutY="126.0" prefHeight="51.0" prefWidth="900.0">
          <children>
-            <Button fx:id="btnPlaceholder" focusTraversable="false" mnemonicParsing="false" prefHeight="39.0" prefWidth="187.0">
+            <Button fx:id="btnChosenProduct" focusTraversable="false" mnemonicParsing="false" prefHeight="39.0" prefWidth="187.0" wrapText="true">
                <FlowPane.margin>
                   <Insets bottom="5.0" left="10.0" top="5.0" />
                </FlowPane.margin>
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
             </Button>
-            <Button fx:id="btnDisplayMessage" focusTraversable="false" mnemonicParsing="false" prefHeight="39.0" prefWidth="476.0" text="PLEASE CHOOSE A PRODUCT">
+            <Button fx:id="btnDisplayMessage" focusTraversable="false" mnemonicParsing="false" prefHeight="39.0" prefWidth="476.0">
                <FlowPane.margin>
                   <Insets left="15.0" right="15.0" />
                </FlowPane.margin>
@@ -106,7 +109,7 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Button>
-            <Button fx:id="btnGetReceipt" focusTraversable="false" mnemonicParsing="false" prefHeight="39.0" prefWidth="187.0" text="GET RECEIPT" textFill="#837e7e">
+            <Button fx:id="btnGetReceipt" disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="39.0" prefWidth="187.0" text="GET RECEIPT" textFill="#837e7e">
                <FlowPane.margin>
                   <Insets right="10.0" />
                </FlowPane.margin>
@@ -116,7 +119,7 @@
             </Button>
          </children>
       </FlowPane>
-      <AnchorPane layoutY="177.0" prefHeight="35.0" prefWidth="900.0">
+      <AnchorPane fx:id="anchorCategoryAndPages" layoutY="177.0" prefHeight="35.0" prefWidth="900.0">
          <children>
             <Label layoutY="6.0" text="Fruits" textFill="#5e5d5d" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="7.0">
                <font>
@@ -130,7 +133,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <GridPane fx:id="gridFruits" alignment="BOTTOM_CENTER" hgap="10.0" layoutY="222.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="316.0" prefWidth="900.0" vgap="10.0" AnchorPane.bottomAnchor="112.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="222.0">
+      <GridPane fx:id="gridFruits" alignment="BOTTOM_CENTER" hgap="10.0" layoutY="222.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="316.0" prefWidth="900.0" stylesheets="@../button-style.css" vgap="10.0" AnchorPane.bottomAnchor="112.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="222.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -149,7 +152,7 @@
             <Insets left="10.0" right="10.0" />
          </padding>
       </GridPane>
-      <FlowPane layoutY="538.0" prefHeight="114.0" prefWidth="900.0">
+      <FlowPane fx:id="flowPaneButtonsBottom" layoutY="538.0" prefHeight="114.0" prefWidth="900.0">
          <children>
             <Button fx:id="btnFruits" mnemonicParsing="false" prefHeight="80.0" prefWidth="250.0" text="Fruits">
                <FlowPane.margin>
@@ -173,7 +176,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnPrevious" mnemonicParsing="false" prefHeight="80.0" prefWidth="160.0" text="&lt;" textFill="#a89f9f">
+            <Button fx:id="btnPrevious" disable="true" mnemonicParsing="false" prefHeight="80.0" prefWidth="160.0" text="&lt;">
                <FlowPane.margin>
                   <Insets right="10.0" top="20.0" />
                </FlowPane.margin>

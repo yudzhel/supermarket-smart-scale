@@ -4,7 +4,7 @@ import com.smartscale.database.DatabaseConnection;
 import com.smartscale.database.LogbookDAO;
 import com.smartscale.model.Product;
 import com.smartscale.util.Clock;
-import com.smartscale.util.MessageDialog;
+import com.smartscale.util.ShowMessage;
 import com.smartscale.util.Switch;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -110,15 +110,15 @@ public class ProductsController implements Initializable {
                 populateTable();
                 clearTextFields();
                 searchBar();
-                MessageDialog.displayInformation("Product " + productName + " was added successfully!");
+                ShowMessage.displayInformationDialog("Product " + productName + " was added successfully!");
                 LogbookDAO.add(LogInController.getName() + " added a new product (" + productName + ")");
             }
             catch (Exception e){
-                MessageDialog.displayError(e.getMessage());
+                ShowMessage.displayErrorDialog(e.getMessage());
             }
         }
         else {
-            MessageDialog.displayError("Please fill all necessary fields (Product Name, Category and Price!)");
+            ShowMessage.displayErrorDialog("Please fill all necessary fields (Product Name, Category and Price!)");
         }
     }
 
@@ -141,15 +141,15 @@ public class ProductsController implements Initializable {
                 populateTable();
                 clearTextFields();
                 searchBar();
-                MessageDialog.displayInformation("Update was successful! " + "(Product ID: " + id + ")");
+                ShowMessage.displayInformationDialog("Update was successful! " + "(Product ID: " + id + ")");
                 LogbookDAO.add(LogInController.getName() + " updated a product (ID: " + id + ")");
 
             } catch (Exception e){
-                MessageDialog.displayError(e.getMessage());
+                ShowMessage.displayErrorDialog(e.getMessage());
             }
         }
         else {
-            MessageDialog.displayError("Please choose a product to update!");
+            ShowMessage.displayErrorDialog("Please choose a product to update!");
         }
 
     }
@@ -169,15 +169,15 @@ public class ProductsController implements Initializable {
                 populateTable();
                 clearTextFields();
                 searchBar();
-                MessageDialog.displayInformation("Product (" + id + ") was deleted!");
+                ShowMessage.displayInformationDialog("Product (" + id + ") was deleted!");
                 LogbookDAO.add(LogInController.getName() + " deleted a product (" + id + ")");
 
             } catch (Exception e){
-                MessageDialog.displayError(e.getMessage());
+                ShowMessage.displayErrorDialog(e.getMessage());
             }
         }
         else {
-            MessageDialog.displayError("Please choose a product to delete!");
+            ShowMessage.displayErrorDialog("Please choose a product to delete!");
         }
 
     }

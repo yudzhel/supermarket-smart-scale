@@ -1,10 +1,8 @@
 package com.smartscale.database;
 
-import com.smartscale.model.Employee;
 import com.smartscale.model.Logbook;
-import com.smartscale.util.MessageDialog;
+import com.smartscale.util.ShowMessage;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -24,7 +22,7 @@ public class LogbookDAO {
             statement.execute(query);
 
         } catch (Exception e){
-            MessageDialog.displayError(e.getMessage());
+            ShowMessage.displayErrorDialog(e.getMessage());
         }
     }
 

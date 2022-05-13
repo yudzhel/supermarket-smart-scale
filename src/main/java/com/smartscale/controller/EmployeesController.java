@@ -4,7 +4,7 @@ import com.smartscale.database.DatabaseConnection;
 import com.smartscale.database.LogbookDAO;
 import com.smartscale.model.Employee;
 import com.smartscale.util.Clock;
-import com.smartscale.util.MessageDialog;
+import com.smartscale.util.ShowMessage;
 import com.smartscale.util.Switch;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -139,15 +139,15 @@ public class EmployeesController implements Initializable {
                 populateTable();
                 clearTextFields();
                 searchBar();
-                MessageDialog.displayInformation("User " + username + " was added successfully!");
+                ShowMessage.displayInformationDialog("User " + username + " was added successfully!");
                 LogbookDAO.add(LogInController.getName() + " added a new user (" + username + ")");
 
             } catch (Exception e){
-                MessageDialog.displayError(e.getMessage());
+                ShowMessage.displayErrorDialog(e.getMessage());
             }
         }
         else {
-            MessageDialog.displayError("Please fill all necessary fields (First Name, Last Name," +
+            ShowMessage.displayErrorDialog("Please fill all necessary fields (First Name, Last Name," +
                     "Username, Password, User Type and Phone)!");
         }
 
@@ -174,14 +174,14 @@ public class EmployeesController implements Initializable {
                 populateTable();
                 clearTextFields();
                 searchBar();
-                MessageDialog.displayInformation("Update was successful! " + "(Username: " + username + ")");
+                ShowMessage.displayInformationDialog("Update was successful! " + "(Username: " + username + ")");
                 LogbookDAO.add(LogInController.getName() + " updated user (" + username + ")");
 
             } catch (Exception e){
-                MessageDialog.displayError(e.getMessage());
+                ShowMessage.displayErrorDialog(e.getMessage());
             }
         } else {
-            MessageDialog.displayError("Please choose a user to update!");
+            ShowMessage.displayErrorDialog("Please choose a user to update!");
         }
 
     }
@@ -201,14 +201,14 @@ public class EmployeesController implements Initializable {
                 populateTable();
                 clearTextFields();
                 searchBar();
-                MessageDialog.displayInformation("User (" + username + ") was deleted!");
+                ShowMessage.displayInformationDialog("User (" + username + ") was deleted!");
                 LogbookDAO.add(LogInController.getName() + " deleted user (" + username + ")");
 
             } catch (Exception e){
-                MessageDialog.displayError(e.getMessage());
+                ShowMessage.displayErrorDialog(e.getMessage());
             }
         } else {
-            MessageDialog.displayError("Please choose a product to delete!");
+            ShowMessage.displayErrorDialog("Please choose a product to delete!");
         }
 
     }
