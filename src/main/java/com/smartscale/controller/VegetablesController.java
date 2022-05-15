@@ -1,7 +1,7 @@
 package com.smartscale.controller;
 
 import com.smartscale.database.ProductDAO;
-import com.smartscale.model.Fruit;
+import com.smartscale.model.Vegetable;
 import com.smartscale.util.Clock;
 import com.smartscale.util.ShowMessage;
 import com.smartscale.util.Switch;
@@ -21,7 +21,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class FruitsController implements Initializable{
+public class VegetablesController implements Initializable{
     @FXML
     private Label lblTimeAndDate;
     @FXML
@@ -33,7 +33,7 @@ public class FruitsController implements Initializable{
     @FXML
     private TextField txtKg;
     @FXML
-    private GridPane gridFruits;
+    private GridPane gridVegetables;
     @FXML
     private Button btnDisplayMessage;
     @FXML
@@ -49,8 +49,8 @@ public class FruitsController implements Initializable{
 
     private static final DecimalFormat df = new DecimalFormat("0.00");
     private boolean isDisabled = true;
-    ObservableList<Fruit> fruits = ProductDAO.getFruitsData();
-    List<Fruit> fruitsList = fruits.stream().toList();
+    ObservableList<Vegetable> vegetables = ProductDAO.getVegetablesData();
+    List<Vegetable> veggiesList = vegetables.stream().toList();
 
     private static int currentPage = 1;
 
@@ -65,8 +65,8 @@ public class FruitsController implements Initializable{
         backgroundClicked();
     }
 
-    public void buttonVegetablesOnAction() throws IOException {
-        Switch.switchTo("views/vegetables.fxml", lblTimeAndDate);
+    public void buttonFruitsOnAction() throws IOException {
+        Switch.switchTo("views/fruits.fxml", lblTimeAndDate);
     }
 
     public void buttonSignInOnAction() throws IOException {
@@ -112,10 +112,10 @@ public class FruitsController implements Initializable{
             }
 
             else{
-                    btnGetReceipt.setDisable(true);
-                    isDisabled = true;
-                    ShowMessage.displayEnterKgMessage(btnDisplayMessage);
-                }
+                btnGetReceipt.setDisable(true);
+                isDisabled = true;
+                ShowMessage.displayEnterKgMessage(btnDisplayMessage);
+            }
         });
 
         btnGetReceipt.setOnMouseEntered(e -> {
@@ -143,9 +143,9 @@ public class FruitsController implements Initializable{
         });
     }
 
-    public List<List<Fruit>> partitionListIntoSublists(){
+    public List<List<Vegetable>> partitionListIntoSublists(){
         int partitionSize = 10;
-        return Lists.partition(fruitsList, partitionSize);
+        return Lists.partition(veggiesList, partitionSize);
     }
 
     public void nextButtonClicked(){
@@ -160,8 +160,8 @@ public class FruitsController implements Initializable{
 
     public void populateGridPane() {
 
-        gridFruits.getChildren().clear();
-        List<List<Fruit>> currentPartition = partitionListIntoSublists();
+        gridVegetables.getChildren().clear();
+        List<List<Vegetable>> currentPartition = partitionListIntoSublists();
 
         int column = 0;
         int row = 0;
@@ -172,7 +172,7 @@ public class FruitsController implements Initializable{
 
         checkPreviousAndNextButtons(currentPage, size);
 
-        for (Fruit fruit : currentPartition.get(currentPage - 1)) {
+        for (Vegetable vegetable : currentPartition.get(currentPage - 1)) {
 
             if (column == 5) {
                 column = 0;
@@ -180,11 +180,11 @@ public class FruitsController implements Initializable{
             }
 
             Button button = new Button();
-            button.setText(fruit.getFruitName());
+            button.setText(vegetable.getVegetableName());
             button.setPrefSize(200, 200);
-            gridFruits.add(button, column++, row);
+            gridVegetables.add(button, column++, row);
 
-            button.setOnAction(actionEvent -> labelDollarKg.setText(fruit.getFruitPrice().toString()));
+            button.setOnAction(actionEvent -> labelDollarKg.setText(vegetable.getVegetablePrice().toString()));
 
             button.setOnMouseEntered(e -> button.setCursor(Cursor.HAND));
 
@@ -195,18 +195,18 @@ public class FruitsController implements Initializable{
                 txtKg.setDisable(false);
                 txtKg.clear();
                 labelTotal.setText("0.00");
-                btnChosenProduct.setText(fruit.getFruitName());
+                btnChosenProduct.setText(vegetable.getVegetableName());
                 ShowMessage.displayEnterKgMessage(btnDisplayMessage);
 
-                });
-                }
-
+            });
         }
+
+    }
 
     public void backgroundClicked(){
 
         Pane[] currentPane = {anchorTop, anchorCategoryAndPages, flowPaneCalculate, flowPaneButtonsTop, flowPaneButtonsBottom,
-        gridFruits};
+                gridVegetables};
 
         for(Pane pane: currentPane){
             pane.setOnMouseClicked(e ->{

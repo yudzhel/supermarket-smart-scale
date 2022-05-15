@@ -253,6 +253,10 @@
     -fx-padding: 5px;
 }
 
+#btnOpenFolder {
+    -fx-background-color: transparent;
+}
+
 /******* PRODUCTS *******/
 
 
@@ -336,3 +340,27 @@
 
 
 /****** FRUITS ********/
+
+/******* VEGETABLES *******/
+
+#btnFruitsVegetables {
+    -fx-background-color: #32334D;
+    -fx-text-fill: white;
+}
+
+#btnFruitsVegetables:hover {
+    -fx-background-color: #2C2D40;
+}
+
+#btnVegetablesVegetables {
+    -fx-background-color: #1D7B38;
+    -fx-text-fill: white;
+}
+
+#btnVegetablesVegetables:hover {
+    -fx-background-color: #165F2A;
+}
+
+
+
+/******* VEGETABLES *******/

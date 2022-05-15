@@ -13,7 +13,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -63,6 +65,7 @@ public class ProductsController implements Initializable {
 
     @FXML
     private TextField txtSearchBar;
+
 
     ObservableList<Product> products;
 
@@ -254,5 +257,25 @@ public class ProductsController implements Initializable {
         return !txtProductName.getText().isEmpty() &&
                 !txtPrice.getText().isEmpty() &&
                 comboCategory.getValue() != null;
+    }
+
+    public void getImageURLPath() {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose image...");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("IMAGE FILES", "*.jpg", "*.png")
+        );
+
+
+        File file = fileChooser.showOpenDialog(lblTimeAndDate.getScene().getWindow());
+
+        if (file != null) {
+            txtImageURL.setText(file.getPath());
+
+        } else  {
+            System.out.println("error"); // or something else
+        }
+
     }
 }

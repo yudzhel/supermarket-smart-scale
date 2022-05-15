@@ -21,7 +21,7 @@ public class ShowMessage {
         alert.showAndWait();
     }
 
-    //Fruits Message Button
+    //Product Message Button
 
     public static void displayChooseProductMessage(Button button) {
         button.setText("PLEASE CHOOSE A PRODUCT!");
