@@ -3,6 +3,7 @@ module com.smart.scale.supermarketsmartscale {
     requires javafx.fxml;
     requires java.sql;
     requires mysql.connector.java;
+    requires com.google.common;
 
 
     opens com.smartscale to javafx.fxml;

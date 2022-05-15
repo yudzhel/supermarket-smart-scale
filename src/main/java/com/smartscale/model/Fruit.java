@@ -44,4 +44,14 @@ public class Fruit {
     public void setFruitImageURL(String fruitImageURL) {
         this.fruitImageURL = fruitImageURL;
     }
+
+    @Override
+    public String toString() {
+        return "Fruit{" +
+                "fruitID=" + fruitID +
+                ", fruitName='" + fruitName + '\'' +
+                ", fruitPrice=" + fruitPrice +
+                ", fruitImageURL='" + fruitImageURL + '\'' +
+                '}';
+    }
 }

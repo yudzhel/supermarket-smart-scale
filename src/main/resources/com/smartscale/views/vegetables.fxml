@@ -165,7 +165,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnVegetables" mnemonicParsing="false" onAction="#buttonVegetablesOnAction" prefHeight="80.0" prefWidth="250.0" text="Vegetables">
+            <Button fx:id="btnVegetables" mnemonicParsing="false" prefHeight="80.0" prefWidth="250.0" text="Vegetables">
                <FlowPane.margin>
                   <Insets right="40.0" top="20.0" />
                </FlowPane.margin>

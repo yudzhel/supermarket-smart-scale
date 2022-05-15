@@ -1,6 +1,6 @@
 package com.smartscale.controller;
 
-import com.smartscale.database.FruitsDAO;
+import com.smartscale.database.ProductDAO;
 import com.smartscale.model.Fruit;
 import com.smartscale.util.Clock;
 import com.smartscale.util.ShowMessage;
@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
+import com.google.common.collect.Lists;
 
 import java.io.IOException;
 import java.net.URL;
@@ -40,14 +41,18 @@ public class FruitsController implements Initializable{
     @FXML
     private Button btnGetReceipt;
     @FXML
+    private Button btnPreviousPage, btnNextPage;
+    @FXML
     private AnchorPane anchorTop, anchorCategoryAndPages;
     @FXML
     private FlowPane flowPaneCalculate, flowPaneButtonsTop, flowPaneButtonsBottom;
 
     private static final DecimalFormat df = new DecimalFormat("0.00");
     private boolean isDisabled = true;
-    ObservableList<Fruit> fruits = FruitsDAO.getFruitsData();
+    ObservableList<Fruit> fruits = ProductDAO.getFruitsData();
     List<Fruit> fruitsList = fruits.stream().toList();
+
+    private static int currentPage = 1;
 
 
 
@@ -60,6 +65,9 @@ public class FruitsController implements Initializable{
         backgroundClicked();
     }
 
+    public void buttonVegetablesOnAction() throws IOException {
+        Switch.switchTo("views/vegetables.fxml", lblTimeAndDate);
+    }
 
     public void buttonSignInOnAction() throws IOException {
 
@@ -135,15 +143,36 @@ public class FruitsController implements Initializable{
         });
     }
 
+    public List<List<Fruit>> partitionListIntoSublists(){
+        int partitionSize = 10;
+        return Lists.partition(fruitsList, partitionSize);
+    }
+
+    public void nextButtonClicked(){
+        currentPage++;
+        populateGridPane();
+    }
+
+    public void previousButtonClicked(){
+        currentPage--;
+        populateGridPane();
+    }
+
     public void populateGridPane() {
 
-        String pagesText = "Page 1 / " + 1;
-        labelPageNumber.setText(pagesText);
+        gridFruits.getChildren().clear();
+        List<List<Fruit>> currentPartition = partitionListIntoSublists();
+
         int column = 0;
         int row = 0;
-        //int size = fruits.size();
+        int size = currentPartition.size();
 
-        for (Fruit fruit : fruitsList) {
+        String pagesText = "Page " + currentPage + " / " + size;
+        labelPageNumber.setText(pagesText);
+
+        checkPreviousAndNextButtons(currentPage, size);
+
+        for (Fruit fruit : currentPartition.get(currentPage - 1)) {
 
             if (column == 5) {
                 column = 0;
@@ -183,11 +212,30 @@ public class FruitsController implements Initializable{
             pane.setOnMouseClicked(e ->{
                 txtKg.clear();
                 txtKg.setDisable(true);
+                labelDollarKg.setText("0.00");
+                labelTotal.setText("0.00");
                 btnChosenProduct.setText("");
                 btnGetReceipt.setDisable(true);
+                ShowMessage.displayChooseProductMessage(btnDisplayMessage);
             });
         }
 
+    }
+
+    private void checkPreviousAndNextButtons(int currentPage, int sizeOfPartitionedList){
+        if((currentPage == 1 && sizeOfPartitionedList != 1) || (currentPage > 1 && sizeOfPartitionedList != currentPage)){
+            btnNextPage.setDisable(false);
+        }
+        else {
+            btnNextPage.setDisable(true);
+        }
+
+        if(currentPage > 1 && sizeOfPartitionedList != 1){
+            btnPreviousPage.setDisable(false);
+        }
+        else {
+            btnPreviousPage.setDisable(true);
+        }
     }
 
 

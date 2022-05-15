@@ -326,5 +326,13 @@
       -fx-background-color: #2C2D40;
     }
 
+ #btnNextPage, #btnPreviousPage {
+    -fx-background-color: #e3e2de;
+ }
+
+ #btnNextPage:hover, #btnPreviousPage:hover {
+     -fx-background-color: #b2c4ad;
+  }
+
 
 /****** FRUITS ********/
