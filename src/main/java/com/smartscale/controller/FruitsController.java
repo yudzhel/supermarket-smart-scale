@@ -8,12 +8,17 @@ import com.smartscale.util.Switch;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import com.google.common.collect.Lists;
+import javafx.scene.text.TextAlignment;
 
 import java.io.IOException;
 import java.net.URL;
@@ -180,9 +185,22 @@ public class FruitsController implements Initializable{
             }
 
             Button button = new Button();
-            button.setText(fruit.getFruitName());
             button.setPrefSize(200, 200);
             gridFruits.add(button, column++, row);
+            String name = fruit.getFruitName();
+
+
+         Image fruitImage;
+
+            if(fruit.getFruitImageURL().isEmpty()){
+                fruitImage = new Image("D:\\git\\supermarket-smart-scale\\src\\main\\resources\\com\\smartscale\\images\\products\\no-image.png");
+            }
+            else {
+                fruitImage = new Image(fruit.getFruitImageURL());
+            }
+            addImageAndTextToButton(button, name, fruitImage);
+
+
 
             button.setOnAction(actionEvent -> labelDollarKg.setText(fruit.getFruitPrice().toString()));
 
@@ -236,5 +254,19 @@ public class FruitsController implements Initializable{
         else {
             btnPreviousPage.setDisable(true);
         }
+    }
+
+    private void addImageAndTextToButton(Button button, String name, Image image){
+        ImageView view = new ImageView(image);
+        view.setFitHeight(110);
+        view.setFitWidth(110);
+        view.setPreserveRatio(true);
+        button.setGraphic(view);
+        button.setContentDisplay(ContentDisplay.TOP);
+        button.setText(name);
+        button.setAlignment(Pos.BOTTOM_CENTER);
+
+        button.setStyle("-fx-font-weight: bold;" +
+                "-fx-padding: 20 10 10 5;");
     }
 }

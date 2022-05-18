@@ -17,7 +17,9 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
+import java.nio.file.Path;
 import java.sql.*;
 import java.util.ResourceBundle;
 
@@ -269,13 +271,8 @@ public class ProductsController implements Initializable {
 
 
         File file = fileChooser.showOpenDialog(lblTimeAndDate.getScene().getWindow());
+        URI text = Path.of(file.getPath()).toUri();
 
-        if (file != null) {
-            txtImageURL.setText(file.getPath());
-
-        } else  {
-            System.out.println("error"); // or something else
-        }
-
+        txtImageURL.setText(text.toString());
     }
 }
