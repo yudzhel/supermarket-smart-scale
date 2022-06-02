@@ -263,16 +263,22 @@ public class ProductsController implements Initializable {
 
     public void getImageURLPath() {
 
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose image...");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("IMAGE FILES", "*.jpg", "*.png")
-        );
+        try{
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choose image...");
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("IMAGE FILES", "*.jpg", "*.png")
+            );
 
 
-        File file = fileChooser.showOpenDialog(lblTimeAndDate.getScene().getWindow());
-        URI text = Path.of(file.getPath()).toUri();
+            File file = fileChooser.showOpenDialog(lblTimeAndDate.getScene().getWindow());
+            URI text = Path.of(file.getPath()).toUri();
 
-        txtImageURL.setText(text.toString());
+            txtImageURL.setText(text.toString());
+
+        } catch(NullPointerException npe){
+            txtImageURL.clear();
+        }
+
     }
 }

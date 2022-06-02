@@ -3,6 +3,7 @@ package com.smartscale.controller;
 import com.smartscale.database.ProductDAO;
 import com.smartscale.model.Fruit;
 import com.smartscale.util.Clock;
+import com.smartscale.util.GetReceipt;
 import com.smartscale.util.ShowMessage;
 import com.smartscale.util.Switch;
 import javafx.collections.ObservableList;
@@ -18,7 +19,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import com.google.common.collect.Lists;
-import javafx.scene.text.TextAlignment;
 
 import java.io.IOException;
 import java.net.URL;
@@ -79,6 +79,11 @@ public class FruitsController implements Initializable{
         Switch.switchTo("views/login.fxml",lblTimeAndDate);
     }
 
+    public void buttonGetReceiptOnAction() {
+        GetReceipt.generate(btnChosenProduct,txtKg,labelDollarKg,labelTotal);
+        clearFields();
+    }
+
     public void calculateTotal(){
 
         try {
@@ -98,7 +103,7 @@ public class FruitsController implements Initializable{
 
     }
 
-    public void activateGetReceipt() {
+    private void activateGetReceipt() {
 
         labelTotal.textProperty().addListener((ov, t, t1) -> {
             String total = labelTotal.getText();
@@ -148,7 +153,7 @@ public class FruitsController implements Initializable{
         });
     }
 
-    public List<List<Fruit>> partitionListIntoSublists(){
+    private List<List<Fruit>> partitionListIntoSublists(){
         int partitionSize = 10;
         return Lists.partition(fruitsList, partitionSize);
     }
@@ -163,7 +168,7 @@ public class FruitsController implements Initializable{
         populateGridPane();
     }
 
-    public void populateGridPane() {
+    private void populateGridPane() {
 
         gridFruits.getChildren().clear();
         List<List<Fruit>> currentPartition = partitionListIntoSublists();
@@ -187,13 +192,12 @@ public class FruitsController implements Initializable{
             Button button = new Button();
             button.setPrefSize(200, 200);
             gridFruits.add(button, column++, row);
+
             String name = fruit.getFruitName();
-
-
-         Image fruitImage;
+            Image fruitImage;
 
             if(fruit.getFruitImageURL().isEmpty()){
-                fruitImage = new Image("D:\\git\\supermarket-smart-scale\\src\\main\\resources\\com\\smartscale\\images\\products\\no-image.png");
+                fruitImage = new Image("D:\\git\\supermarket-smart-scale\\src\\main\\resources\\com\\smartscale\\images\\products\\no-image.jpg");
             }
             else {
                 fruitImage = new Image(fruit.getFruitImageURL());
@@ -221,21 +225,13 @@ public class FruitsController implements Initializable{
 
         }
 
-    public void backgroundClicked(){
+    private void backgroundClicked(){
 
         Pane[] currentPane = {anchorTop, anchorCategoryAndPages, flowPaneCalculate, flowPaneButtonsTop, flowPaneButtonsBottom,
         gridFruits};
 
         for(Pane pane: currentPane){
-            pane.setOnMouseClicked(e ->{
-                txtKg.clear();
-                txtKg.setDisable(true);
-                labelDollarKg.setText("0.00");
-                labelTotal.setText("0.00");
-                btnChosenProduct.setText("");
-                btnGetReceipt.setDisable(true);
-                ShowMessage.displayChooseProductMessage(btnDisplayMessage);
-            });
+            pane.setOnMouseClicked(e -> clearFields());
         }
 
     }
@@ -258,15 +254,25 @@ public class FruitsController implements Initializable{
 
     private void addImageAndTextToButton(Button button, String name, Image image){
         ImageView view = new ImageView(image);
-        view.setFitHeight(110);
-        view.setFitWidth(110);
-        view.setPreserveRatio(true);
+        view.setFitHeight(98);
+        view.setFitWidth(130);
+        view.setSmooth(true);
         button.setGraphic(view);
         button.setContentDisplay(ContentDisplay.TOP);
         button.setText(name);
         button.setAlignment(Pos.BOTTOM_CENTER);
 
         button.setStyle("-fx-font-weight: bold;" +
-                "-fx-padding: 20 10 10 5;");
+                "-fx-padding: 0 0 10 0;" );
+    }
+
+    private void clearFields(){
+        txtKg.clear();
+        txtKg.setDisable(true);
+        labelDollarKg.setText("0.00");
+        labelTotal.setText("0.00");
+        btnChosenProduct.setText("");
+        btnGetReceipt.setDisable(true);
+        ShowMessage.displayChooseProductMessage(btnDisplayMessage);
     }
 }

@@ -94,14 +94,14 @@
     -fx-background-color: #a61212 ;
 }
 
-#backgroundAdmin {
+#backgroundAdmin, #backgroundEmployee {
     -fx-background-image: url('images/login/login_background2.jpg');
     -fx-background-repeat: stretch;
     -fx-background-size: 900 650;
     -fx-background-position: center center;
 }
 
-#anchorAdminButtons {
+#anchorAdminButtons, #anchorEmployeeButtons {
     -fx-border-radius: 5;
     -fx-background-radius: 5;
     -fx-background-color: rgba(50, 50, 50, 0.8);

@@ -3,15 +3,20 @@ package com.smartscale.controller;
 import com.smartscale.database.ProductDAO;
 import com.smartscale.model.Vegetable;
 import com.smartscale.util.Clock;
+import com.smartscale.util.GetReceipt;
 import com.smartscale.util.ShowMessage;
 import com.smartscale.util.Switch;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import com.google.common.collect.Lists;
 
@@ -77,7 +82,6 @@ public class VegetablesController implements Initializable{
     public void calculateTotal(){
 
         try {
-
             double kg = Double.parseDouble(txtKg.getText());
             double productPrice = Double.parseDouble(labelDollarKg.getText());
             double total = kg * productPrice;
@@ -90,6 +94,12 @@ public class VegetablesController implements Initializable{
             txtKg.setPromptText("0.00");
             labelTotal.setText("0.00");
         }
+
+    }
+
+    public void buttonGetReceiptOnAction() {
+        GetReceipt.generate(btnChosenProduct,txtKg,labelDollarKg,labelTotal);
+        clearFields();
 
     }
 
@@ -184,6 +194,17 @@ public class VegetablesController implements Initializable{
             button.setPrefSize(200, 200);
             gridVegetables.add(button, column++, row);
 
+            String name = vegetable.getVegetableName();
+            Image vegetableImage;
+
+            if(vegetable.getVegetableImageURL().isEmpty()){
+                vegetableImage = new Image("D:\\git\\supermarket-smart-scale\\src\\main\\resources\\com\\smartscale\\images\\products\\no-image.jpg");
+            }
+            else {
+                vegetableImage = new Image(vegetable.getVegetableImageURL());
+            }
+            addImageAndTextToButton(button, name, vegetableImage);
+
             button.setOnAction(actionEvent -> labelDollarKg.setText(vegetable.getVegetablePrice().toString()));
 
             button.setOnMouseEntered(e -> button.setCursor(Cursor.HAND));
@@ -210,13 +231,7 @@ public class VegetablesController implements Initializable{
 
         for(Pane pane: currentPane){
             pane.setOnMouseClicked(e ->{
-                txtKg.clear();
-                txtKg.setDisable(true);
-                labelDollarKg.setText("0.00");
-                labelTotal.setText("0.00");
-                btnChosenProduct.setText("");
-                btnGetReceipt.setDisable(true);
-                ShowMessage.displayChooseProductMessage(btnDisplayMessage);
+            clearFields();
             });
         }
 
@@ -236,5 +251,29 @@ public class VegetablesController implements Initializable{
         else {
             btnPreviousPage.setDisable(true);
         }
+    }
+
+    private void addImageAndTextToButton(Button button, String name, Image image){
+        ImageView view = new ImageView(image);
+        view.setFitHeight(98);
+        view.setFitWidth(130);
+        view.setSmooth(true);
+        button.setGraphic(view);
+        button.setContentDisplay(ContentDisplay.TOP);
+        button.setText(name);
+        button.setAlignment(Pos.BOTTOM_CENTER);
+
+        button.setStyle("-fx-font-weight: bold;" +
+                "-fx-padding: 0 0 10 0;" );
+    }
+
+    private void clearFields(){
+        txtKg.clear();
+        txtKg.setDisable(true);
+        labelDollarKg.setText("0.00");
+        labelTotal.setText("0.00");
+        btnChosenProduct.setText("");
+        btnGetReceipt.setDisable(true);
+        ShowMessage.displayChooseProductMessage(btnDisplayMessage);
     }
 }

@@ -109,7 +109,7 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Button>
-            <Button fx:id="btnGetReceipt" disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="39.0" prefWidth="187.0" text="GET RECEIPT" textFill="#837e7e">
+            <Button fx:id="btnGetReceipt" disable="true" focusTraversable="false" mnemonicParsing="false" onAction="#buttonGetReceiptOnAction" prefHeight="39.0" prefWidth="187.0" text="GET RECEIPT" textFill="#837e7e">
                <FlowPane.margin>
                   <Insets right="10.0" />
                </FlowPane.margin>
