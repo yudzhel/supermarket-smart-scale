@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="backgroundEmployee" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartscale.controller.EmployeeController">
+   <children>
+      <AnchorPane fx:id="anchorTop" prefHeight="35.0" prefWidth="900.0">
+         <children>
+            <Label fx:id="lblTimeAndDate" layoutX="43.0" layoutY="9.0" prefHeight="25.0" prefWidth="190.0" text="Label" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="5.0" />
+            <Label fx:id="lblCurrentlyLoggedInText" alignment="CENTER_RIGHT" layoutX="693.0" layoutY="9.0" prefHeight="25.0" prefWidth="190.0" text="Label" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="5.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorEmployeeButtons" layoutX="202.0" layoutY="75.0" prefHeight="250.0" prefWidth="524.0" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="174.0">
+         <children>
+            <Button fx:id="btnMyAccount" layoutX="72.0" layoutY="20.0" mnemonicParsing="false" onAction="#myAccountButtonOnAction" prefHeight="205.0" prefWidth="224.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <graphic>
+                  <ImageView fitHeight="124.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/user.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Label alignment="CENTER" layoutX="57.0" layoutY="186.0" prefHeight="30.0" prefWidth="152.0" text="MY ACCOUNT" textFill="WHITE" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="315.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnProducts" layoutX="281.0" layoutY="20.0" mnemonicParsing="false" onAction="#productsButtonOnAction" prefHeight="205.0" prefWidth="224.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="20.0">
+               <graphic>
+                  <ImageView fitHeight="124.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/addproduct.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Label alignment="CENTER" layoutX="262.0" layoutY="186.0" prefHeight="30.0" prefWidth="152.0" text="PRODUCTS" textFill="WHITE" AnchorPane.leftAnchor="315.0" AnchorPane.rightAnchor="57.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button fx:id="btnLogOut" layoutX="733.0" layoutY="570.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="56.0" prefWidth="152.0" text="LOG OUT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

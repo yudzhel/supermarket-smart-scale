@@ -1,0 +1,19 @@
+.button {
+    -fx-background-radius: 10px;
+    -fx-background-color: white;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, grey, 10, 0, 2, 2);
+    -fx-shadow-highlight-color: transparent;
+}
+
+.button:hover {
+     -fx-border-color: #0f852e;
+     -fx-border-width: 5px;
+     -fx-shadow-highlight-color: transparent;
+}
+
+.button:focused {
+     -fx-border-color: #0f852e;
+     -fx-border-width: 5px;
+     -fx-shadow-highlight-color: transparent;
+}
