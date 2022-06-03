@@ -50,7 +50,7 @@ public class LogInController implements Initializable {
         }
     }
 
-    public void validateLogin() {
+    private void validateLogin() {
         DatabaseConnection connection = new DatabaseConnection();
         Connection connectDB = connection.getConnection();
 

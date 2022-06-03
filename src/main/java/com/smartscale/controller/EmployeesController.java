@@ -1,6 +1,7 @@
 package com.smartscale.controller;
 
 import com.smartscale.database.DatabaseConnection;
+import com.smartscale.database.EmployeeDAO;
 import com.smartscale.database.LogbookDAO;
 import com.smartscale.model.Employee;
 import com.smartscale.util.Clock;
@@ -17,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class EmployeesController implements Initializable {
@@ -110,7 +112,7 @@ public class EmployeesController implements Initializable {
         colUsername.setCellValueFactory(new PropertyValueFactory<Employee, String>("username"));
         colPassword.setCellValueFactory(new PropertyValueFactory<Employee, String>("password"));
 
-        employees = DatabaseConnection.getEmployeesData();
+        employees = EmployeeDAO.getEmployeesData();
         tableEmployees.setItems(employees);
     }
 
@@ -127,13 +129,13 @@ public class EmployeesController implements Initializable {
                 String username = txtUsername.getText();
 
                 ps = connection.prepareStatement(query);
-                ps.setString(1, txtFirstName.getText());
-                ps.setString(2, txtLastName.getText());
-                ps.setString(3, txtUsername.getText());
-                ps.setString(4, txtPassword.getText());
-                ps.setString(5, comboUserType.getValue());
-                ps.setString(6, txtEmail.getText());
-                ps.setString(7, txtPhone.getText());
+                ps.setString(1, txtFirstName.getText().trim());
+                ps.setString(2, txtLastName.getText().trim());
+                ps.setString(3, txtUsername.getText().trim());
+                ps.setString(4, txtPassword.getText().trim());
+                ps.setString(5, comboUserType.getValue().trim());
+                ps.setString(6, txtEmail.getText().trim());
+                ps.setString(7, txtPhone.getText().trim());
                 ps.execute();
 
                 populateTable();
@@ -158,18 +160,18 @@ public class EmployeesController implements Initializable {
         Connection connection = databaseConnection.getConnection();
         Statement statement = connection.createStatement();
 
-        String query = "UPDATE users SET firstname = '" + txtFirstName.getText() +
-                "', lastname = '" + txtLastName.getText() +
-                "', username = '" + txtUsername.getText() +
-                "', password = '" + txtPassword.getText() +
+        String query = "UPDATE users SET firstname = '" + txtFirstName.getText().trim() +
+                "', lastname = '" + txtLastName.getText().trim() +
+                "', username = '" + txtUsername.getText().trim() +
+                "', password = '" + txtPassword.getText().trim() +
                 "', role = '" + comboUserType.getSelectionModel().getSelectedItem() +
-                "', email = '" + txtEmail.getText() +
-                "', phone = '" + txtPhone.getText() + "' WHERE accountID = " + txtID.getText();
+                "', email = '" + txtEmail.getText().trim() +
+                "', phone = '" + txtPhone.getText().trim() + "' WHERE accountID = " + txtID.getText();
 
         if(!txtID.getText().isEmpty()){
             try{
 
-                String username = txtUsername.getText();
+                String username = txtUsername.getText().trim();
                 statement.execute(query);
                 populateTable();
                 clearTextFields();

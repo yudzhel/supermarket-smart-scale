@@ -99,6 +99,8 @@ public class FruitsController implements Initializable{
         } catch (NumberFormatException nfe) {
             txtKg.setPromptText("0.00");
             labelTotal.setText("0.00");
+        } catch(Exception e){
+            ShowMessage.displayErrorDialog(e.getMessage());
         }
 
     }
@@ -196,15 +198,20 @@ public class FruitsController implements Initializable{
             String name = fruit.getFruitName();
             Image fruitImage;
 
-            if(fruit.getFruitImageURL().isEmpty()){
-                fruitImage = new Image("D:\\git\\supermarket-smart-scale\\src\\main\\resources\\com\\smartscale\\images\\products\\no-image.jpg");
-            }
-            else {
-                fruitImage = new Image(fruit.getFruitImageURL());
-            }
-            addImageAndTextToButton(button, name, fruitImage);
+            try {
 
+                if (fruit.getFruitImageURL().isEmpty()) {
+                    fruitImage = new Image("D:\\git\\supermarket-smart-scale\\src\\main\\resources\\com\\smartscale\\images\\products\\no-image.jpg");
+                }
+                else {
+                    fruitImage = new Image(fruit.getFruitImageURL());
+                }
 
+                addImageAndTextToButton(button, name, fruitImage);
+
+            } catch (Exception e){
+                ShowMessage.displayErrorDialog(e.getMessage());
+            }
 
             button.setOnAction(actionEvent -> labelDollarKg.setText(fruit.getFruitPrice().toString()));
 

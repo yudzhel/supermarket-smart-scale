@@ -18,7 +18,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 public class LogbookController implements Initializable {
@@ -50,7 +49,7 @@ public class LogbookController implements Initializable {
         Switch.switchTo("views/admin.fxml", lblTimeAndDate);
     }
 
-    public void populateTable(){
+    private void populateTable(){
 
         colDate.setCellValueFactory(new PropertyValueFactory<>("datetime"));
         colAction.setCellValueFactory(new PropertyValueFactory<Logbook, String>("message"));

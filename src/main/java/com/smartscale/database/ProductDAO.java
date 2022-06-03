@@ -57,4 +57,27 @@ public class ProductDAO {
 
         return vegetables;
     }
+
+    public static ObservableList<Product> getProductsData(){
+
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+
+        ObservableList<Product> products = FXCollections.observableArrayList();
+
+        try {
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM products");
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                products.add(new Product(rs.getInt("product_ID"), rs.getString("product_name"),
+                        rs.getString("product_category"), rs.getDouble("product_price"), rs.getString("image_URL")));
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return products;
+    }
 }

@@ -2,6 +2,7 @@ package com.smartscale.controller;
 
 import com.smartscale.database.DatabaseConnection;
 import com.smartscale.database.LogbookDAO;
+import com.smartscale.database.ProductDAO;
 import com.smartscale.model.Product;
 import com.smartscale.util.Clock;
 import com.smartscale.util.ShowMessage;
@@ -103,13 +104,13 @@ public class ProductsController implements Initializable {
         if(areRequiredFieldsAreFilled()){
             try{
 
-                String productName = txtProductName.getText();
+                String productName = txtProductName.getText().trim();
 
                 ps = connection.prepareStatement(query);
-                ps.setString(1, txtProductName.getText());
-                ps.setString(2, comboCategory.getValue());
-                ps.setString(3, txtPrice.getText());
-                ps.setString(4, txtImageURL.getText());
+                ps.setString(1, txtProductName.getText().trim());
+                ps.setString(2, comboCategory.getValue().trim());
+                ps.setString(3, txtPrice.getText().trim());
+                ps.setString(4, txtImageURL.getText().trim());
                 ps.execute();
 
                 populateTable();
@@ -132,11 +133,11 @@ public class ProductsController implements Initializable {
         Connection connection = databaseConnection.getConnection();
         Statement statement = connection.createStatement();
 
-        String query = "UPDATE products SET product_name = '" + txtProductName.getText() +
+        String query = "UPDATE products SET product_name = '" + txtProductName.getText().trim() +
                 "', product_category = '" + comboCategory.getSelectionModel().getSelectedItem() +
-                "', product_price = " + txtPrice.getText() +
-                ", image_URL = '" + txtImageURL.getText() +
-                 "' WHERE product_ID = " + txtProductID.getText();
+                "', product_price = " + txtPrice.getText().trim() +
+                ", image_URL = '" + txtImageURL.getText().trim() +
+                 "' WHERE product_ID = " + txtProductID.getText().trim();
 
         if(!txtProductID.getText().isEmpty()){
             try{
@@ -187,7 +188,7 @@ public class ProductsController implements Initializable {
 
     }
 
-    public void populateTable(){
+    private void populateTable(){
 
         colProductID.setCellValueFactory(new PropertyValueFactory<Product, Integer>("productID"));
         colProductName.setCellValueFactory(new PropertyValueFactory<Product, String>("productName"));
@@ -196,7 +197,7 @@ public class ProductsController implements Initializable {
         colImageURL.setCellValueFactory(new PropertyValueFactory<Product, String>("imageURL"));
 
 
-        products = DatabaseConnection.getProductsData();
+        products = ProductDAO.getProductsData();
         tableProducts.setItems(products);
     }
 
