@@ -82,7 +82,25 @@
 
 /******LOG IN*******/
 
+/******* EMPLOYEE ******/
 
+#backgroundEmployee {
+    -fx-background-color: #E5E7E9;
+}
+
+#btnMyAccountEmployee, #btnProductsEmployee {
+    -fx-background-color:  #117A65;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+#btnMyAccountEmployee:hover, #btnProductsEmployee:hover {
+    -fx-background-color:  #2D6F3F;
+}
+
+
+
+/******* EMPLOYEE ******/
 
 /****** ADMIN *******/
 
@@ -94,7 +112,7 @@
     -fx-background-color: #a61212 ;
 }
 
-#backgroundAdmin, #backgroundEmployee {
+#backgroundAdmin, #backgroundEmployee  {
     -fx-background-image: url('images/login/login_background2.jpg');
     -fx-background-repeat: stretch;
     -fx-background-size: 900 650;
@@ -108,11 +126,13 @@
 }
 
 #btnMyAccount, #btnProducts, #btnLogbook, #btnEmployees{
-    -fx-background-color: #76a8a7;
+    -fx-background-color:  #117A65;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
 }
 
 #btnMyAccount:hover, #btnProducts:hover, #btnLogbook:hover, #btnEmployees:hover{
-    -fx-background-color: #5b8583;
+    -fx-background-color:  #2D6F3F;
 }
 
 

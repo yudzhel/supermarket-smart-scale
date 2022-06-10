@@ -15,6 +15,11 @@
       <AnchorPane fx:id="anchorTop" prefHeight="35.0" prefWidth="900.0">
          <children>
             <Label fx:id="lblTimeAndDate" layoutX="43.0" layoutY="9.0" prefHeight="25.0" prefWidth="190.0" text="Label" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="5.0" />
+            <Label layoutX="423.0" layoutY="5.0" prefHeight="26.0" prefWidth="54.0" text="LOGIN" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchorUserLogin" layoutX="211.0" layoutY="81.0" prefHeight="437.0" prefWidth="480.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="210.0">

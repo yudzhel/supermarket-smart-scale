@@ -71,12 +71,12 @@ public class VegetablesController implements Initializable{
     }
 
     public void buttonFruitsOnAction() throws IOException {
-        Switch.switchTo("views/fruits.fxml", lblTimeAndDate);
+        Switch.switchTo("views/fruits.fxml","Fruits",lblTimeAndDate);
     }
 
     public void buttonSignInOnAction() throws IOException {
 
-        Switch.switchTo("views/login.fxml",lblTimeAndDate);
+        Switch.switchTo("views/login.fxml","Login",lblTimeAndDate);
     }
 
     public void calculateTotal(){
@@ -198,7 +198,7 @@ public class VegetablesController implements Initializable{
             Image vegetableImage;
 
             if(vegetable.getVegetableImageURL().isEmpty()){
-                vegetableImage = new Image("D:\\git\\supermarket-smart-scale\\src\\main\\resources\\com\\smartscale\\images\\products\\no-image.jpg");
+                vegetableImage = new Image("src\\main\\resources\\com\\smartscale\\images\\products\\no-image.jpg");
             }
             else {
                 vegetableImage = new Image(vegetable.getVegetableImageURL());

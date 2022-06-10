@@ -25,22 +25,22 @@ public class AdminController implements Initializable {
     }
 
     public void logoutButtonOnAction() throws IOException {
-        Switch.switchTo("views/login.fxml", lblTimeAndDate);
+        Switch.switchTo("views/login.fxml","Login", lblTimeAndDate);
     }
 
     public void myAccountButtonOnAction() throws IOException {
-        Switch.switchTo("views/myaccount.fxml", lblTimeAndDate);
+        Switch.switchTo("views/myaccount.fxml","My Account", lblTimeAndDate);
     }
 
     public void employeesButtonOnAction() throws IOException {
-        Switch.switchTo("views/employees.fxml", lblTimeAndDate);
+        Switch.switchTo("views/employees.fxml","Employees", lblTimeAndDate);
     }
 
     public void productsButtonOnAction() throws IOException {
-        Switch.switchTo("views/products.fxml", lblTimeAndDate);
+        Switch.switchTo("views/products.fxml","Products", lblTimeAndDate);
     }
 
     public void logbookButtonOnAction() throws IOException {
-        Switch.switchTo("views/logbook.fxml", lblTimeAndDate);
+        Switch.switchTo("views/logbook.fxml","Logbook", lblTimeAndDate);
     }
 }

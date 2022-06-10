@@ -25,7 +25,7 @@ public class GetReceipt {
 
     public static void generate(Button btnChosenProduct, TextField txtKg, Label labelDollarKg, Label labelTotal){
 
-        String fileName = "receipt_" + getDateForFileName();
+        String fileName = "receipt_" + getTimeAndDateForFileName();
 
         try{
             Document document = new Document(new PdfDocument(new PdfWriter("src\\main\\resources\\com\\smartscale\\receipts\\" +fileName+".pdf")), PageSize.A6);
@@ -54,7 +54,7 @@ public class GetReceipt {
         String paraAddress = "Address: Lopen Inpun St 21";
         String paraPhone = "Tel: 0929 3244 4552";
         String paraSeperator = "---------------------------------------------------";
-        String paraDate = getDateForDocument();
+        String paraDate = getTimeAndDateForDocument();
         String thankYou = "THANK YOU FOR CHOOSING US!";
 
         String[] paragraphs = {paraReceipt, paraSupermarketName, nextLine, paraAddress,paraPhone, nextLine, paraSeperator, paraDate,
@@ -93,12 +93,12 @@ public class GetReceipt {
 
     }
 
-    private static String getDateForFileName(){
+    private static String getTimeAndDateForFileName(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hhmmss_a_ddMMyyyy");
         return LocalDateTime.now().format(formatter);
     }
 
-    private static String getDateForDocument(){
+    private static String getTimeAndDateForDocument(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a   dd.MM.yyyy");
         return LocalDateTime.now().format(formatter);
     }

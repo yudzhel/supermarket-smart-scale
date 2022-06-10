@@ -38,7 +38,7 @@ public class LogInController implements Initializable {
     }
 
     public void cancelButtonOnAction() throws IOException {
-        Switch.switchTo("views/fruits.fxml", lblTimeAndDate);
+        Switch.switchTo("views/fruits.fxml","Friuts", lblTimeAndDate);
     }
 
     public void loginButtonOnAction() {
@@ -94,12 +94,12 @@ public class LogInController implements Initializable {
 
     public void switchToEmployee() throws IOException {
 
-        Switch.switchTo("views/employee.fxml", lblTimeAndDate);
+        Switch.switchTo("views/employee.fxml","Employee", lblTimeAndDate);
     }
 
     public void switchToAdmin() throws IOException {
 
-        Switch.switchTo("views/admin.fxml", lblTimeAndDate);
+        Switch.switchTo("views/admin.fxml","Admin", lblTimeAndDate);
     }
 
     public static String getName(){

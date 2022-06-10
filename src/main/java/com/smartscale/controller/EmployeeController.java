@@ -23,15 +23,15 @@ public class EmployeeController implements Initializable {
     }
 
     public void logoutButtonOnAction() throws IOException {
-        Switch.switchTo("views/login.fxml", lblTimeAndDate);
+        Switch.switchTo("views/login.fxml","Login", lblTimeAndDate);
     }
 
     public void myAccountButtonOnAction() throws IOException {
-        Switch.switchTo("views/myaccount.fxml", lblTimeAndDate);
+        Switch.switchTo("views/myaccount.fxml","My Account", lblTimeAndDate);
     }
 
     public void productsButtonOnAction() throws IOException {
-        Switch.switchTo("views/products.fxml", lblTimeAndDate);
+        Switch.switchTo("views/products.fxml","Products", lblTimeAndDate);
     }
 
 }

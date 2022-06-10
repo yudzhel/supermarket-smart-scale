@@ -46,7 +46,7 @@ public class LogbookController implements Initializable {
     }
 
     public void backButtonOnAction() throws IOException {
-        Switch.switchTo("views/admin.fxml", lblTimeAndDate);
+        Switch.switchTo("views/admin.fxml","Admin", lblTimeAndDate);
     }
 
     private void populateTable(){

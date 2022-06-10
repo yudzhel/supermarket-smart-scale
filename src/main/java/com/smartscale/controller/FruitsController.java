@@ -71,12 +71,12 @@ public class FruitsController implements Initializable{
     }
 
     public void buttonVegetablesOnAction() throws IOException {
-        Switch.switchTo("views/vegetables.fxml", lblTimeAndDate);
+        Switch.switchTo("views/vegetables.fxml","Vegetables", lblTimeAndDate);
     }
 
     public void buttonSignInOnAction() throws IOException {
 
-        Switch.switchTo("views/login.fxml",lblTimeAndDate);
+        Switch.switchTo("views/login.fxml","Login",lblTimeAndDate);
     }
 
     public void buttonGetReceiptOnAction() {

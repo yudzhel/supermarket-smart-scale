@@ -35,10 +35,10 @@ public class MyAccountController implements Initializable {
     public void backButtonOnAction() throws IOException {
 
         if(role.equals("administrator")){
-            Switch.switchTo("views/admin.fxml", lblTimeAndDate);
+            Switch.switchTo("views/admin.fxml","Admin", lblTimeAndDate);
         }
         else {
-            Switch.switchTo("views/employee.fxml", lblTimeAndDate);
+            Switch.switchTo("views/employee.fxml","Employee", lblTimeAndDate);
         }
 
     }
