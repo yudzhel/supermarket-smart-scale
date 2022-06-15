@@ -27,7 +27,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <TableView fx:id="tableProducts" layoutX="338.0" layoutY="134.0" onMouseClicked="#tableToTextFields" prefHeight="427.0" prefWidth="547.0" AnchorPane.bottomAnchor="88.0">
+      <TableView fx:id="tableProducts" layoutX="338.0" layoutY="134.0" onMouseClicked="#tableToTextFields" prefHeight="450.0" prefWidth="547.0" AnchorPane.bottomAnchor="88.0">
         <columns>
           <TableColumn fx:id="colProductID" prefWidth="71.0" text="Product ID" />
           <TableColumn fx:id="colProductName" prefWidth="126.0" text="Product Name" />
@@ -36,7 +36,7 @@
             <TableColumn fx:id="colImageURL" prefWidth="144.0" text="Image URL" />
         </columns>
       </TableView>
-      <FlowPane fx:id="anchorProductDetails" layoutX="25.0" layoutY="95.0" prefHeight="257.0" prefWidth="300.0" AnchorPane.leftAnchor="25.0">
+      <FlowPane fx:id="anchorProductDetails" layoutX="25.0" layoutY="67.0" prefHeight="257.0" prefWidth="300.0" AnchorPane.leftAnchor="25.0">
          <children>
             <Label prefHeight="17.0" prefWidth="120.0" text="Product ID" textFill="WHITE">
                <FlowPane.margin>
@@ -49,7 +49,7 @@
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="txtProductID" editable="false" prefHeight="25.0" prefWidth="160.0">
+            <TextField fx:id="txtProductID" disable="true" editable="false" prefHeight="25.0" prefWidth="160.0">
                <FlowPane.margin>
                   <Insets top="20.0" />
                </FlowPane.margin>
@@ -116,7 +116,7 @@
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="txtImageURL" prefHeight="25.0" prefWidth="160.0">
+            <TextField fx:id="txtImageURL" disable="true" prefHeight="25.0" prefWidth="160.0">
                <FlowPane.margin>
                   <Insets top="20.0" />
                </FlowPane.margin>
@@ -173,7 +173,7 @@
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <FlowPane layoutX="337.0" layoutY="95.0" prefHeight="25.0" prefWidth="547.0">
+      <FlowPane layoutX="337.0" layoutY="67.0" prefHeight="25.0" prefWidth="547.0">
          <children>
             <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                <image>

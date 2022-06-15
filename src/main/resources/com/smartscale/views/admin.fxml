@@ -43,7 +43,7 @@
             <Font name="Calibri Bold" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="btnLogbook" layoutX="252.0" layoutY="453.0" mnemonicParsing="false" onAction="#logbookButtonOnAction" prefHeight="93.0" prefWidth="391.0" text="LOGBOOK" textFill="WHITE" AnchorPane.leftAnchor="252.0" AnchorPane.topAnchor="443.0">
+      <Button fx:id="btnLogbook" layoutX="252.0" layoutY="453.0" mnemonicParsing="false" onAction="#logbookButtonOnAction" prefHeight="93.0" prefWidth="391.0" text="RECENT ACTIVITY" textFill="WHITE" AnchorPane.leftAnchor="252.0" AnchorPane.topAnchor="443.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

@@ -19,7 +19,7 @@ public class EmployeeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Clock.initClock(lblTimeAndDate);
-        lblCurrentlyLoggedInText.setText("Currently logged in: " + LogInController.getName());
+        lblCurrentlyLoggedInText.setText("Currently logged in: " + LogInController.getUsername());
     }
 
     public void logoutButtonOnAction() throws IOException {

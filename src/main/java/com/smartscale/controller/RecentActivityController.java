@@ -1,14 +1,10 @@
 package com.smartscale.controller;
 
-import com.mysql.cj.log.Log;
-import com.smartscale.database.LogbookDAO;
-import com.smartscale.model.Employee;
-import com.smartscale.model.Logbook;
+import com.smartscale.database.RecentActivityDAO;
+import com.smartscale.model.RecentActivity;
 import com.smartscale.util.Clock;
 import com.smartscale.util.Switch;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -20,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LogbookController implements Initializable {
+public class RecentActivityController implements Initializable {
 
     @FXML
     private Label lblTimeAndDate;
@@ -28,20 +24,20 @@ public class LogbookController implements Initializable {
     private Label lblCurrentlyLoggedInText;
 
     @FXML
-    private TableView<Logbook> tableLogbook;
+    private TableView<RecentActivity> tableRecentActivity;
 
     @FXML
-    private TableColumn<Logbook, String> colAction;
+    private TableColumn<RecentActivity, String> colActivity;
 
     @FXML
-    private TableColumn<Logbook, String> colDate;
+    private TableColumn<RecentActivity, String> colDate;
 
-    ObservableList<Logbook> list;
+    ObservableList<RecentActivity> list;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Clock.initClock(lblTimeAndDate);
-        lblCurrentlyLoggedInText.setText("Currently logged in: " + LogInController.getName());
+        lblCurrentlyLoggedInText.setText("Currently logged in: " + LogInController.getUsername());
         populateTable();
     }
 
@@ -52,10 +48,10 @@ public class LogbookController implements Initializable {
     private void populateTable(){
 
         colDate.setCellValueFactory(new PropertyValueFactory<>("datetime"));
-        colAction.setCellValueFactory(new PropertyValueFactory<Logbook, String>("message"));
+        colActivity.setCellValueFactory(new PropertyValueFactory<RecentActivity, String>("message"));
 
-        list = LogbookDAO.getData();
-        tableLogbook.setItems(list);
+        list = RecentActivityDAO.getData();
+        tableRecentActivity.setItems(list);
 
     }
 }

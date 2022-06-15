@@ -2,7 +2,7 @@ package com.smartscale.controller;
 
 import com.smartscale.database.DatabaseConnection;
 import com.smartscale.database.EmployeeDAO;
-import com.smartscale.database.LogbookDAO;
+import com.smartscale.database.RecentActivityDAO;
 import com.smartscale.model.Employee;
 import com.smartscale.util.Clock;
 import com.smartscale.util.ShowMessage;
@@ -18,7 +18,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class EmployeesController implements Initializable {
@@ -91,7 +90,7 @@ public class EmployeesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Clock.initClock(lblTimeAndDate);
-        lblCurrentlyLoggedInText.setText("Currently logged in: " + LogInController.getName());
+        lblCurrentlyLoggedInText.setText("Currently logged in: " + LogInController.getUsername());
         populateComboBox();
         populateTable();
         searchBar();
@@ -142,7 +141,7 @@ public class EmployeesController implements Initializable {
                 clearTextFields();
                 searchBar();
                 ShowMessage.displayInformationDialog("User " + username + " was added successfully!");
-                LogbookDAO.add(LogInController.getName() + " added a new user (" + username + ")");
+                RecentActivityDAO.add(LogInController.getUsername() + " added a new user (" + username + ")");
 
             } catch (Exception e){
                 ShowMessage.displayErrorDialog(e.getMessage());
@@ -177,7 +176,7 @@ public class EmployeesController implements Initializable {
                 clearTextFields();
                 searchBar();
                 ShowMessage.displayInformationDialog("Update was successful! " + "(Username: " + username + ")");
-                LogbookDAO.add(LogInController.getName() + " updated user (" + username + ")");
+                RecentActivityDAO.add(LogInController.getUsername() + " updated user (" + username + ")");
 
             } catch (Exception e){
                 ShowMessage.displayErrorDialog(e.getMessage());
@@ -204,13 +203,13 @@ public class EmployeesController implements Initializable {
                 clearTextFields();
                 searchBar();
                 ShowMessage.displayInformationDialog("User (" + username + ") was deleted!");
-                LogbookDAO.add(LogInController.getName() + " deleted user (" + username + ")");
+                RecentActivityDAO.add(LogInController.getUsername() + " deleted user (" + username + ")");
 
             } catch (Exception e){
                 ShowMessage.displayErrorDialog(e.getMessage());
             }
         } else {
-            ShowMessage.displayErrorDialog("Please choose a product to delete!");
+            ShowMessage.displayErrorDialog("Please choose a user to delete!");
         }
 
     }
@@ -248,7 +247,7 @@ public class EmployeesController implements Initializable {
 
     public void populateComboBox(){
         comboUserType.getItems().addAll(
-                "administrator", "employee");
+                "admin", "employee");
 
         comboUserType.setPromptText("Please select one");
     }

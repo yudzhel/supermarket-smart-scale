@@ -5,12 +5,12 @@ import javafx.beans.property.SimpleStringProperty;
 
 import java.sql.Timestamp;
 
-public class Logbook {
+public class RecentActivity {
 
    private SimpleStringProperty datetime;
    private String message;
 
-    public Logbook(SimpleStringProperty datetime, String message) {
+    public RecentActivity(SimpleStringProperty datetime, String message) {
         this.datetime = datetime;
         this.message = message;
     }

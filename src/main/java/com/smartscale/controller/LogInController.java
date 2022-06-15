@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
 
-    private static String name, id, role;
+    private static String username, id, role;
     @FXML
     private Label lblTimeAndDate;
     @FXML
@@ -54,18 +54,18 @@ public class LogInController implements Initializable {
         DatabaseConnection connection = new DatabaseConnection();
         Connection connectDB = connection.getConnection();
 
-        String verifyLogin = "SELECT accountID, role, firstname FROM users WHERE username = '" + txtUsername.getText() + "' AND password = '" + txtPassword.getText() + "'";
+        String verifyLogin = "SELECT accountID, role, username FROM users WHERE username = '" + txtUsername.getText() + "' AND password = '" + txtPassword.getText() + "'";
 
         try {
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
 
             if (queryResult.next()) {
-                name = queryResult.getString("firstname");
+                username = queryResult.getString("username");
                 id = queryResult.getString("accountID");
                 role = queryResult.getString("role");
 
-                if ((queryResult.getString("role").equals("administrator"))) {
+                if ((queryResult.getString("role").equals("admin"))) {
                     switchToAdmin();
                 } else {
                     switchToEmployee();
@@ -102,8 +102,8 @@ public class LogInController implements Initializable {
         Switch.switchTo("views/admin.fxml","Admin", lblTimeAndDate);
     }
 
-    public static String getName(){
-        return name;
+    public static String getUsername(){
+        return username;
     }
 
     public static String getID(){

@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import com.google.common.collect.Lists;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -177,50 +178,67 @@ public class VegetablesController implements Initializable{
         int row = 0;
         int size = currentPartition.size();
 
-        String pagesText = "Page " + currentPage + " / " + size;
-        labelPageNumber.setText(pagesText);
-
-        checkPreviousAndNextButtons(currentPage, size);
-
-        for (Vegetable vegetable : currentPartition.get(currentPage - 1)) {
-
-            if (column == 5) {
-                column = 0;
-                row++;
-            }
-
-            Button button = new Button();
-            button.setText(vegetable.getVegetableName());
-            button.setPrefSize(200, 200);
-            gridVegetables.add(button, column++, row);
-
-            String name = vegetable.getVegetableName();
-            Image vegetableImage;
-
-            if(vegetable.getVegetableImageURL().isEmpty()){
-                vegetableImage = new Image("src\\main\\resources\\com\\smartscale\\images\\products\\no-image.jpg");
-            }
-            else {
-                vegetableImage = new Image(vegetable.getVegetableImageURL());
-            }
-            addImageAndTextToButton(button, name, vegetableImage);
-
-            button.setOnAction(actionEvent -> labelDollarKg.setText(vegetable.getVegetablePrice().toString()));
-
-            button.setOnMouseEntered(e -> button.setCursor(Cursor.HAND));
-
-            button.setOnMouseExited(e -> button.setCursor(Cursor.DEFAULT));
-
-            button.setOnMouseClicked(e -> {
-
-                txtKg.setDisable(false);
-                txtKg.clear();
-                labelTotal.setText("0.00");
-                btnChosenProduct.setText(vegetable.getVegetableName());
-                ShowMessage.displayEnterKgMessage(btnDisplayMessage);
-
-            });
+        if(size == 0){
+            String pagesText = "Page 1 / 1";
+            labelPageNumber.setText(pagesText);
+            gridVegetables.getChildren().clear();
+            checkPreviousAndNextButtons(currentPage, size);
         }
+        else{
+            String pagesText = "Page " + currentPage + " / " + size;
+            labelPageNumber.setText(pagesText);
+            gridVegetables.getChildren().clear();
+            checkPreviousAndNextButtons(currentPage, size);
+
+            for (Vegetable vegetable : currentPartition.get(currentPage - 1)) {
+
+                if (column == 5) {
+                    column = 0;
+                    row++;
+                }
+
+                Button button = new Button();
+                button.setText(vegetable.getVegetableName());
+                button.setPrefSize(200, 200);
+                gridVegetables.add(button, column++, row);
+
+                String name = vegetable.getVegetableName();
+                Image vegetableImage;
+
+                try {
+
+                    if (vegetable.getVegetableImageURL().isEmpty()) {
+                        vegetableImage = new Image(new File("src/main/resources/com/smartscale/images/products/no-image.png").toURI().toString());
+                    } else {
+                        vegetableImage = new Image(vegetable.getVegetableImageURL());
+                    }
+
+                    addImageAndTextToButton(button, name, vegetableImage);
+                }
+                catch(Exception e){
+                        ShowMessage.displayErrorDialog(e.getMessage());
+                    }
+
+
+                button.setOnAction(actionEvent -> labelDollarKg.setText(vegetable.getVegetablePrice().toString()));
+
+                button.setOnMouseEntered(e -> button.setCursor(Cursor.HAND));
+
+                button.setOnMouseExited(e -> button.setCursor(Cursor.DEFAULT));
+
+                button.setOnMouseClicked(e -> {
+
+                    txtKg.setDisable(false);
+                    txtKg.clear();
+                    labelTotal.setText("0.00");
+                    btnChosenProduct.setText(vegetable.getVegetableName());
+                    ShowMessage.displayEnterKgMessage(btnDisplayMessage);
+
+                });
+            }
+        }
+
+
 
     }
 
@@ -238,7 +256,7 @@ public class VegetablesController implements Initializable{
     }
 
     private void checkPreviousAndNextButtons(int currentPage, int sizeOfPartitionedList){
-        if((currentPage == 1 && sizeOfPartitionedList != 1) || (currentPage > 1 && sizeOfPartitionedList != currentPage)){
+        if((currentPage == 1 && (sizeOfPartitionedList != 1 && sizeOfPartitionedList!=0)) || (currentPage > 1 && sizeOfPartitionedList != currentPage)){
             btnNextPage.setDisable(false);
         }
         else {

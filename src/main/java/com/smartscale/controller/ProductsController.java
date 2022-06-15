@@ -1,7 +1,7 @@
 package com.smartscale.controller;
 
 import com.smartscale.database.DatabaseConnection;
-import com.smartscale.database.LogbookDAO;
+import com.smartscale.database.RecentActivityDAO;
 import com.smartscale.database.ProductDAO;
 import com.smartscale.model.Product;
 import com.smartscale.util.Clock;
@@ -76,7 +76,7 @@ public class ProductsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Clock.initClock(lblTimeAndDate);
-        lblCurrentlyLoggedInText.setText("Currently logged in: " + LogInController.getName());
+        lblCurrentlyLoggedInText.setText("Currently logged in: " + LogInController.getUsername());
         populateComboBox();
         populateTable();
         searchBar();
@@ -84,7 +84,7 @@ public class ProductsController implements Initializable {
 
     public void backButtonOnAction() throws IOException {
 
-        if(LogInController.getRole().equals("administrator")){
+        if(LogInController.getRole().equals("admin")){
             Switch.switchTo("views/admin.fxml","Admin", lblTimeAndDate);
         }
         else {
@@ -117,7 +117,7 @@ public class ProductsController implements Initializable {
                 clearTextFields();
                 searchBar();
                 ShowMessage.displayInformationDialog("Product " + productName + " was added successfully!");
-                LogbookDAO.add(LogInController.getName() + " added a new product (" + productName + ")");
+                RecentActivityDAO.add(LogInController.getUsername() + " added a new product (" + productName + ")");
             }
             catch (Exception e){
                 ShowMessage.displayErrorDialog(e.getMessage());
@@ -142,13 +142,13 @@ public class ProductsController implements Initializable {
         if(!txtProductID.getText().isEmpty()){
             try{
 
-                String id = txtProductID.getText();
+                String name = txtProductName.getText();
                 statement.execute(query);
                 populateTable();
                 clearTextFields();
                 searchBar();
-                ShowMessage.displayInformationDialog("Update was successful! " + "(Product ID: " + id + ")");
-                LogbookDAO.add(LogInController.getName() + " updated a product (ID: " + id + ")");
+                ShowMessage.displayInformationDialog("Update was successful! " + "(" + name + ")");
+                RecentActivityDAO.add(LogInController.getUsername() + " updated a product (" + name + ")");
 
             } catch (Exception e){
                 ShowMessage.displayErrorDialog(e.getMessage());
@@ -170,13 +170,13 @@ public class ProductsController implements Initializable {
         if(!txtProductID.getText().isEmpty()){
             try{
 
-                String id = txtProductID.getText();
+                String name = txtProductName.getText();
                 statement.execute(query);
                 populateTable();
                 clearTextFields();
                 searchBar();
-                ShowMessage.displayInformationDialog("Product (" + id + ") was deleted!");
-                LogbookDAO.add(LogInController.getName() + " deleted a product (" + id + ")");
+                ShowMessage.displayInformationDialog("Product (" + name + ") was deleted!");
+                RecentActivityDAO.add(LogInController.getUsername() + " deleted a product (" + name + ")");
 
             } catch (Exception e){
                 ShowMessage.displayErrorDialog(e.getMessage());

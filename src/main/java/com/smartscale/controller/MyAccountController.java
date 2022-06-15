@@ -28,13 +28,13 @@ public class MyAccountController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
             Clock.initClock(lblTimeAndDate);
-            lblCurrentlyLoggedInText.setText("Currently logged in: " + LogInController.getName());
+            lblCurrentlyLoggedInText.setText("Currently logged in: " + LogInController.getUsername());
             getDataFromTablesAndAddToTextFields();
     }
 
     public void backButtonOnAction() throws IOException {
 
-        if(role.equals("administrator")){
+        if(role.equals("admin")){
             Switch.switchTo("views/admin.fxml","Admin", lblTimeAndDate);
         }
         else {

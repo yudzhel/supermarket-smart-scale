@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import com.google.common.collect.Lists;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -179,56 +180,66 @@ public class FruitsController implements Initializable{
         int row = 0;
         int size = currentPartition.size();
 
-        String pagesText = "Page " + currentPage + " / " + size;
-        labelPageNumber.setText(pagesText);
+        if(size == 0){
+            String pagesText = "Page 1 / 1";
+            labelPageNumber.setText(pagesText);
+            gridFruits.getChildren().clear();
+            checkPreviousAndNextButtons(currentPage, size);
+        }
+        else {
+            String pagesText = "Page " + currentPage + " / " + size;
+            labelPageNumber.setText(pagesText);
+            gridFruits.getChildren().clear();
+            checkPreviousAndNextButtons(currentPage, size);
 
-        checkPreviousAndNextButtons(currentPage, size);
+            for (Fruit fruit : currentPartition.get(currentPage - 1)) {
 
-        for (Fruit fruit : currentPartition.get(currentPage - 1)) {
-
-            if (column == 5) {
-                column = 0;
-                row++;
-            }
-
-            Button button = new Button();
-            button.setPrefSize(200, 200);
-            gridFruits.add(button, column++, row);
-
-            String name = fruit.getFruitName();
-            Image fruitImage;
-
-            try {
-
-                if (fruit.getFruitImageURL().isEmpty()) {
-                    fruitImage = new Image("D:\\git\\supermarket-smart-scale\\src\\main\\resources\\com\\smartscale\\images\\products\\no-image.jpg");
-                }
-                else {
-                    fruitImage = new Image(fruit.getFruitImageURL());
+                if (column == 5) {
+                    column = 0;
+                    row++;
                 }
 
-                addImageAndTextToButton(button, name, fruitImage);
+                Button button = new Button();
+                button.setPrefSize(200, 200);
+                gridFruits.add(button, column++, row);
 
-            } catch (Exception e){
-                ShowMessage.displayErrorDialog(e.getMessage());
-            }
+                String name = fruit.getFruitName();
+                Image fruitImage;
 
-            button.setOnAction(actionEvent -> labelDollarKg.setText(fruit.getFruitPrice().toString()));
+                try {
 
-            button.setOnMouseEntered(e -> button.setCursor(Cursor.HAND));
+                    if (fruit.getFruitImageURL().isEmpty()) {
+                        fruitImage = new Image(new File("src/main/resources/com/smartscale/images/products/no-image.png").toURI().toString());
+                    }
+                    else {
+                        fruitImage = new Image(fruit.getFruitImageURL());
+                    }
 
-            button.setOnMouseExited(e -> button.setCursor(Cursor.DEFAULT));
+                    addImageAndTextToButton(button, name, fruitImage);
 
-            button.setOnMouseClicked(e -> {
+                } catch (Exception e){
+                    ShowMessage.displayErrorDialog(e.getMessage());
+                }
 
-                txtKg.setDisable(false);
-                txtKg.clear();
-                labelTotal.setText("0.00");
-                btnChosenProduct.setText(fruit.getFruitName());
-                ShowMessage.displayEnterKgMessage(btnDisplayMessage);
+                button.setOnAction(actionEvent -> labelDollarKg.setText(fruit.getFruitPrice().toString()));
+
+                button.setOnMouseEntered(e -> button.setCursor(Cursor.HAND));
+
+                button.setOnMouseExited(e -> button.setCursor(Cursor.DEFAULT));
+
+                button.setOnMouseClicked(e -> {
+
+                    txtKg.setDisable(false);
+                    txtKg.clear();
+                    labelTotal.setText("0.00");
+                    btnChosenProduct.setText(fruit.getFruitName());
+                    ShowMessage.displayEnterKgMessage(btnDisplayMessage);
 
                 });
-                }
+            }
+        }
+
+
 
         }
 
@@ -244,7 +255,7 @@ public class FruitsController implements Initializable{
     }
 
     private void checkPreviousAndNextButtons(int currentPage, int sizeOfPartitionedList){
-        if((currentPage == 1 && sizeOfPartitionedList != 1) || (currentPage > 1 && sizeOfPartitionedList != currentPage)){
+        if((currentPage == 1 && (sizeOfPartitionedList != 1 && sizeOfPartitionedList!=0)) || (currentPage > 1 && sizeOfPartitionedList != currentPage)){
             btnNextPage.setDisable(false);
         }
         else {
