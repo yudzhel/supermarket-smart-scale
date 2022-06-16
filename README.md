@@ -45,7 +45,7 @@ Supermarket Smart Scale is a desktop application imitating a real-life electroni
 
 # Set Up Instructions For Running Application
 
-Create the **_supermarket_** schema on the database tool, and import the database from the SQL file, or copy the SQL code.
+Create the **_supermarket_** schema on the database tool, and import the database from the SQL file (**_db/supermarket.sql_**), or copy the SQL code.
 
 Download the repository files (project) from the download section or clone this project.
 
