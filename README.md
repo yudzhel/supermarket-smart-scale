@@ -4,15 +4,29 @@ Supermarket Smart Scale is a desktop application imitating a real-life electroni
 
 # Features:
 
-- Csutomers can browse the fruits and vegetabes section to choose a product they wish to buy, enter the weight and click "Get Receipt" which generates a PDF of the receipt with information about the product they've chosen and the total money after calculation.
+- Customers can browse the fruits and vegetabes section to choose a product they wish to buy, enter the weight and click "Get Receipt" which generates a PDF of the receipt with information about the product they've chosen and the total money after calculation.
+
+    https://user-images.githubusercontent.com/100995573/174034689-82fb27a5-0eda-4307-8c74-2203214317b8.mp4
+
+
+    _File: receipt_050425_PM_15062022.pdf_
+
+    ![Screenshot](https://github.com/yudzhel/supermarket-smart-scale/blob/master/screens/receipt.png)
 
 - Authentication system. 
 
-    - Two types of users: administrator and employee.
+    - Two types of users: admin and employee.
 
 
-    - Admin can add/update/delete products and users info, has access to logbook which keeps track of the changes made to the database.
+
+    https://user-images.githubusercontent.com/100995573/174035067-07789ea5-d9c5-454a-a3bf-a90891b56bff.mp4
+
+
+    - Admin can add/update/delete products and users info, has access to "Recent Activity" which keeps track of the changes made to the database.
    
+   
+   
+    https://user-images.githubusercontent.com/100995573/174035136-c0648014-d69f-431d-aed5-74b9911ec6ac.mp4
 
     - Employees can add/update and delete products.
 
